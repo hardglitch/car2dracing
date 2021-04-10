@@ -1,79 +1,77 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CoinBot : MonoBehaviour
 {
     [Serializable]
     public class DropObject
     {
-        [SerializeField] private GameObject _GO;
-        [SerializeField] private float _dropInterval;
+        [FormerlySerializedAs("_GO")] [SerializeField] private GameObject go;
+        [FormerlySerializedAs("_dropInterval")] [SerializeField] private float dropInterval;
         private float _counter = 0;
 
-        public DropObject() { }
-        public GameObject GetGO() { return _GO; }
-        public float GetDropInterval() { return _dropInterval; }
+        //public DropObject() { }
+        public GameObject GetGO() { return go; }
+        public float GetDropInterval() { return dropInterval; }
         public float GetCounter() { return _counter; }
-        public void SetCounter(float cntr) { _counter = cntr; }
+        public void SetCounter(float counter) { _counter = counter; }
     }
 
 
     [SerializeField] private float speed = 5;
-    private Vector2 startPoint = new Vector2(-12, 4);
+    private readonly Vector2 _startPoint = new Vector2(-12, 4);
 
     [SerializeField] private Transform dropSource;
     [SerializeField] private DropObject[] dropItems;
 
-    private float minDropX = 0, maxDropX = 0;
-    private bool onCollission = false;
-    private int createdCoins = 0;
+    private const float _minDropX = 0;
+    private float _maxDropX = 0;
+    private bool _onCollision = false;
+    private int _createdCoins = 0;
 
 
     private void Start()
     {
-        transform.position = new Vector3(startPoint.x, startPoint.y, transform.position.z);
-        maxDropX = Global.GetGroundPrefabSizeX() * (Global.GetLevelSize() - 1);
+        transform.position = new Vector3(_startPoint.x, _startPoint.y, transform.position.z);
+        _maxDropX = Global.GroundPrefabSizeX * (Global.LevelSize - 1);
     }
 
 
-    void Update()
+    private void Update()
     {
-        // airplan flying
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        // airplane flying
+        transform.Translate(Vector3.right * (speed * Time.deltaTime));
 
-        // droping
-        if (transform.position.x >= minDropX && transform.position.x <= maxDropX && !onCollission)
+        // dropping
+        if (!(transform.position.x >= _minDropX) || !(transform.position.x <= _maxDropX) || _onCollision) return;
+        foreach (var t in dropItems)
         {
-            for (int i=0; i<dropItems.Length; i++)
-            {
-                dropItems[i].SetCounter(dropItems[i].GetCounter() + Time.deltaTime);
+            t.SetCounter(t.GetCounter() + Time.deltaTime);
 
-                if (dropItems[i].GetCounter() >= dropItems[i].GetDropInterval())
-                {
-                    dropSource.transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-                    Instantiate(dropItems[i].GetGO(), dropSource.transform.position, transform.rotation);
-                    dropItems[i].SetCounter(0);
+            if (!(t.GetCounter() >= t.GetDropInterval())) continue;
+            dropSource.transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+            Instantiate(t.GetGO(), dropSource.transform.position, transform.rotation);
+            t.SetCounter(0);
 
-                    if (dropItems[i].GetGO().name == "Coin") createdCoins++;
-                }
-            }
+            if (t.GetGO().name == "Coin") _createdCoins++;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-            onCollission = true;
+            _onCollision = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-            onCollission = false;
+            _onCollision = false;
     }
 
     public int GetCreatedCoins()
     {
-        return createdCoins;
+        return _createdCoins;
     }
 }

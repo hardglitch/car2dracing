@@ -2,27 +2,27 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    [SerializeField] GameObject groundPrefab, spikesPrefab;
-    private GameObject ground, spikes;
-    private Vector3 startPos = new Vector3(), 
-                    spikesPos = new Vector3();
+    [SerializeField] private GameObject groundPrefab, spikesPrefab;
+    private GameObject _ground, _spikes;
+    private Vector3 _startPos = new Vector3(), 
+                    _spikesPos = new Vector3();
 
     private void Start()
     {
-        startPos = transform.position;
+        _startPos = transform.position;
+        Global.GroundPrefabSizeX = groundPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
 
-        for (int i=0; i<Global.GetLevelSize(); i++)
+
+        for (var i=0; i<Global.LevelSize; i++)
         {
-            startPos = new Vector3(startPos.x + Global.GetGroundPrefabSizeX(), startPos.y, startPos.z);
-            ground = Instantiate(groundPrefab, startPos, transform.rotation);
-            ground.transform.SetParent(transform);
+            _startPos = new Vector3(_startPos.x + Global.GroundPrefabSizeX, _startPos.y, _startPos.z);
+            _ground = Instantiate(groundPrefab, _startPos, transform.rotation);
+            _ground.transform.SetParent(transform);
 
-            if (i % 10 == 0 && i > 0)
-            {
-                spikesPos = new Vector3(startPos.x, startPos.y + 0.7f, transform.position.z);
-                spikes = Instantiate(spikesPrefab, spikesPos, transform.rotation);
-                spikes.transform.SetParent(transform);
-            }
+            if (i % 10 != 0 || i <= 0) continue;
+            _spikesPos = new Vector3(_startPos.x, _startPos.y + 0.7f, transform.position.z);
+            _spikes = Instantiate(spikesPrefab, _spikesPos, transform.rotation);
+            _spikes.transform.SetParent(transform);
         }
     }
 }

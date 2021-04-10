@@ -1,113 +1,113 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private GameObject carPlayer;
-    private GameObject[] carCompetitors;
+    private GameObject _carPlayer;
+    private GameObject[] _carCompetitors;
 
-    private WheelJoint2D[] wheelJoints;
-    private JointMotor2D wheels;
+    private WheelJoint2D[] _wheelJoints;
+    private JointMotor2D _wheels;
 
     [SerializeField] private float acceleration = 200;
     [SerializeField] private float maxSpeed = 1500;
-    [SerializeField] private float inertion = 2;
+    [FormerlySerializedAs("inertia")] [SerializeField] private float inertia = 2;
 
     [SerializeField] private Image angleTimerImage;
-    private readonly float angleTimer = 5;
-    private float angleTime;
+    private const float _angleTimer = 5;
+    private float _angleTime;
 
-    private readonly int maxHealth = 3;
-    private int currentHealth;
-    private int coins = 0;
+    private const int _maxHealth = 3;
+    private int _currentHealth;
+    private int _coins = 0;
 
-    [SerializeField] private HUD objHUD;
-    [SerializeField] private SFXManager sfxManager;
+    [FormerlySerializedAs("objHUD")] [SerializeField] private Hud objHud;
+    [SerializeField] private SfxManager sfxManager;
     [SerializeField] private Player player;
     [SerializeField] private CarScript carScript;
     [SerializeField] private Scoreboard scoreBoard;
 
-    private Controllers contr;
-    private int[] heroNumbers;
+    private Controllers _controllers;
+    private int[] _heroNumbers;
 
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        _currentHealth = _maxHealth;
     }
 
-    void Start()
-    {
-        carCompetitors = new GameObject[Global.GetMaxCar()];
-        carPlayer = transform.Find("Car " + Global.GetCar().ToString()).gameObject;
 
-        foreach (Transform trans in carPlayer.GetComponentsInChildren<Transform>())
+    private void Start()
+    {
+        _carCompetitors = new GameObject[Global.MaxCar];
+        _carPlayer = transform.Find("Car " + Global.Car.ToString()).gameObject;
+
+        foreach (var trans in _carPlayer.GetComponentsInChildren<Transform>())
             trans.gameObject.layer = LayerMask.NameToLayer("Player");
 
-        carPlayer.SetActive(true);
+        _carPlayer.SetActive(true);
 
-        carPlayer.GetComponent<CarScript>().SetHUD(objHUD);
-        carPlayer.GetComponent<CarScript>().SetSfxManager(sfxManager);
-        carPlayer.GetComponent<CarScript>().SetPlayer(player);
-        carPlayer.GetComponent<CarScript>().SetScoreboard(scoreBoard);
-        carPlayer.transform.Find("Left").GetComponent<OnItemCollision>().SetCar(carScript);
-        carPlayer.transform.Find("Right").GetComponent<OnItemCollision>().SetCar(carScript);
+        _carPlayer.GetComponent<CarScript>().SetHud(objHud);
+        _carPlayer.GetComponent<CarScript>().SetSfxManager(sfxManager);
+        _carPlayer.GetComponent<CarScript>().SetPlayer(player);
+        _carPlayer.GetComponent<CarScript>().SetScoreboard(scoreBoard);
 
-        Sprite _sr = transform.Find("Hero " + Global.GetHero().ToString()).GetComponent<SpriteRenderer>().sprite;
-        carPlayer.transform.Find("Hero").GetComponent<SpriteRenderer>().sprite = _sr;
-        carPlayer.layer = LayerMask.NameToLayer("Player");
+        foreach (var component in _carPlayer.GetComponentsInChildren<OnItemCollision>())
+            component.SetCar(carScript);
 
-
-        heroNumbers = new int[Global.GetMaxCar()];
-        for (int i = 1; i <= heroNumbers.Length; i++)
-            heroNumbers[i - 1] = (i == Global.GetHero()) ? 0 : i;
+        var sr = transform.Find("Hero " + Global.Hero.ToString()).GetComponent<SpriteRenderer>().sprite;
+        _carPlayer.transform.Find("Hero").GetComponent<SpriteRenderer>().sprite = sr;
+        _carPlayer.layer = LayerMask.NameToLayer("Player");
 
 
-        for (int i = 1; i <= Global.GetMaxCar(); i++)
-            if (i != Global.GetCar())
+        _heroNumbers = new int[Global.MaxCar];
+        for (var i = 1; i <= _heroNumbers.Length; i++)
+            _heroNumbers[i - 1] = (i == Global.Hero) ? 0 : i;
+
+
+        for (var i = 1; i <= Global.MaxCar; i++)
+            if (i != Global.Car)
             {
-                carCompetitors[i - 1] = transform.Find("Car " + i.ToString()).gameObject;
-                carCompetitors[i - 1].layer = LayerMask.NameToLayer("Competitor " + i.ToString());
+                _carCompetitors[i - 1] = transform.Find("Car " + i.ToString()).gameObject;
+                _carCompetitors[i - 1].layer = LayerMask.NameToLayer("Competitor " + i.ToString());
 
-                foreach (Transform trans in carCompetitors[i - 1].GetComponentsInChildren<Transform>())
+                foreach (var trans in _carCompetitors[i - 1].GetComponentsInChildren<Transform>())
                     trans.gameObject.layer = LayerMask.NameToLayer("Competitor " + i.ToString());
 
-                carCompetitors[i - 1].GetComponent<Competitor>().enabled = true;
-                carCompetitors[i - 1].GetComponent<CarScript>().SetSfxManager(sfxManager);
-                carCompetitors[i - 1].GetComponent<CarScript>().SetScoreboard(scoreBoard);
+                _carCompetitors[i - 1].GetComponent<Competitor>().enabled = true;
+                _carCompetitors[i - 1].GetComponent<CarScript>().SetSfxManager(sfxManager);
+                _carCompetitors[i - 1].GetComponent<CarScript>().SetScoreboard(scoreBoard);
 
-                carCompetitors[i - 1].transform.Find("Left").GetComponent<OnItemCollision>().SetCar(carScript);
-                carCompetitors[i - 1].transform.Find("Right").GetComponent<OnItemCollision>().SetCar(carScript);
+                foreach (var component in _carCompetitors[i - 1].GetComponentsInChildren<OnItemCollision>())
+                    component.SetCar(carScript);
 
 
-                int _randomHeroCell = 0;
-                int _hero;
+                int hero;
                 while (true)
                 {
-                    _randomHeroCell = (int)UnityEngine.Random.Range(0, Global.GetMaxCar());
-                    if (heroNumbers[_randomHeroCell] != 0)
-                    {
-                        _hero = heroNumbers[_randomHeroCell];
-                        heroNumbers[_randomHeroCell] = 0;
-                        break;
-                    }
+                    var randomHeroCell = (int)UnityEngine.Random.Range(0, Global.MaxCar);
+                    if (_heroNumbers[randomHeroCell] == 0) continue;
+                    hero = _heroNumbers[randomHeroCell];
+                    _heroNumbers[randomHeroCell] = 0;
+                    break;
                 }
 
-                _sr = transform.Find("Hero " + _hero.ToString()).GetComponent<SpriteRenderer>().sprite;
-                carCompetitors[i - 1].transform.Find("Hero").GetComponent<SpriteRenderer>().sprite = _sr;
+                sr = transform.Find("Hero " + hero.ToString()).GetComponent<SpriteRenderer>().sprite;
+                _carCompetitors[i - 1].transform.Find("Hero").GetComponent<SpriteRenderer>().sprite = sr;
 
-                carCompetitors[i - 1].SetActive(true);
-                carCompetitors[i - 1].transform.position = new Vector3(
-                    carCompetitors[i - 1].transform.position.x,
-                    carCompetitors[i - 1].transform.position.y,
-                    carPlayer.transform.position.z + i * 3);
+                _carCompetitors[i - 1].SetActive(true);
+                _carCompetitors[i - 1].transform.position = new Vector3(
+                    _carCompetitors[i - 1].transform.position.x,
+                    _carCompetitors[i - 1].transform.position.y,
+                    _carPlayer.transform.position.z + i * 3);
             }
 
-        contr = GetComponent<Controllers>();
-        wheelJoints = carPlayer.GetComponents<WheelJoint2D>();
-        wheels = wheelJoints[0].motor;
-        angleTime = angleTimer;
+        _controllers = GetComponent<Controllers>();
+        _wheelJoints = _carPlayer.GetComponents<WheelJoint2D>();
+        _wheels = _wheelJoints[0].motor;
+        _angleTime = _angleTimer;
     }
 
 
@@ -116,35 +116,36 @@ public class Player : MonoBehaviour
         try
         {
             // Forward Move (Right)
-            if (contr.IsClickedRight() && wheels.motorSpeed >= -maxSpeed)
+            if (_controllers.IsClickedRight() && _wheels.motorSpeed >= -maxSpeed)
             {
-                if (wheels.motorSpeed > 0)
-                    wheels.motorSpeed = 0;
+                if (_wheels.motorSpeed > 0)
+                    _wheels.motorSpeed = 0;
                 else
-                    wheels.motorSpeed -= acceleration * Time.fixedDeltaTime;
+                    _wheels.motorSpeed -= acceleration * Time.fixedDeltaTime;
             }
             else
-            if (!contr.IsClickedLeft() && wheels.motorSpeed < 0)
-                wheels.motorSpeed += acceleration * inertion * Time.fixedDeltaTime;
+            if (!_controllers.IsClickedLeft() && _wheels.motorSpeed < 0)
+                _wheels.motorSpeed += acceleration * inertia * Time.fixedDeltaTime;
 
 
             // Back Move (Left)
-            if (contr.IsClickedLeft() && wheels.motorSpeed <= maxSpeed)
+            if (_controllers.IsClickedLeft() && _wheels.motorSpeed <= maxSpeed)
             {
-                if (wheels.motorSpeed < 0)
-                    wheels.motorSpeed = 0;
+                if (_wheels.motorSpeed < 0)
+                    _wheels.motorSpeed = 0;
                 else
-                    wheels.motorSpeed += acceleration * Time.fixedDeltaTime;
+                    _wheels.motorSpeed += acceleration * Time.fixedDeltaTime;
             }
             else
-            if (!contr.IsClickedRight() && wheels.motorSpeed > 0)
-                wheels.motorSpeed -= acceleration * inertion * Time.fixedDeltaTime;
+            if (!_controllers.IsClickedRight() && _wheels.motorSpeed > 0)
+                _wheels.motorSpeed -= acceleration * inertia * Time.fixedDeltaTime;
 
-            wheelJoints[1].motor = wheels; // backWheel = frontWheel
-            wheelJoints[0].motor = wheels;
+            _wheelJoints[1].motor = _wheels; // backWheel = frontWheel
+            _wheelJoints[0].motor = _wheels;
         }
         catch (Exception error)
         {
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
             Debug.LogError(error);
         }
 
@@ -153,65 +154,66 @@ public class Player : MonoBehaviour
     }
 
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void AngleChecker()
     {
-        if (Mathf.Abs(carPlayer.transform.rotation.z) > 0.5f)
+        if (Mathf.Abs(_carPlayer.transform.rotation.z) > 0.5f)
         {
-            if ((int)angleTime == (int)angleTimer)
-                objHUD.GetComponent<HUD>().TurnOverCounter(true);
+            if ((int)_angleTime == (int)_angleTimer)
+                objHud.GetComponent<Hud>().TurnOverCounter(true);
 
-            angleTime -= Time.fixedDeltaTime;
+            _angleTime -= Time.fixedDeltaTime;
 
-            if (angleTime <= 0)
+            if (_angleTime <= 0)
             {
-                carPlayer.transform.position = new Vector3(carPlayer.transform.position.x, carPlayer.transform.position.y + 2f, carPlayer.transform.position.z);
-                carPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
+                _carPlayer.transform.position = new Vector3(_carPlayer.transform.position.x, _carPlayer.transform.position.y + 2f, _carPlayer.transform.position.z);
+                _carPlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
                 RecountHealth(-1);
 
-                objHUD.GetComponent<HUD>().TurnOverCounter(false);
-                angleTime = angleTimer;
+                objHud.GetComponent<Hud>().TurnOverCounter(false);
+                _angleTime = _angleTimer;
             }
             else
-                angleTimerImage.fillAmount = angleTime / angleTimer;
+                angleTimerImage.fillAmount = _angleTime / _angleTimer;
         }
         else
-        if ((int)angleTime != (int)angleTimer)
+        if ((int)_angleTime != (int)_angleTimer)
         {
-            objHUD.GetComponent<HUD>().TurnOverCounter(false);
-            angleTime = angleTimer;
+            objHud.GetComponent<Hud>().TurnOverCounter(false);
+            _angleTime = _angleTimer;
         }
     }
 
 
     public void RecountHealth(int deltaHealth)
     {
-        currentHealth += deltaHealth;
+        _currentHealth += deltaHealth;
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
-            currentHealth = 0;
-            objHUD.GetComponent<HUD>().MakeRestartScreen();
+            _currentHealth = 0;
+            objHud.GetComponent<Hud>().MakeRestartScreen();
         }
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
+        if (_currentHealth > _maxHealth)
+            _currentHealth = _maxHealth;
 
-        objHUD.MakeHP();
+        objHud.MakeHp();
     }
 
 
     public int GetCoins()
     {
-        return coins;
+        return _coins;
     }
 
-    public void SetCoins(int _coins)
+    public void SetCoins(int coins)
     {
-        coins += _coins;
+        this._coins += coins;
     }
 
 
     public int GetHealth()
     {
-        return currentHealth;
+        return _currentHealth;
     }
 }

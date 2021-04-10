@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
-public class HUD : MonoBehaviour
+public class Hud : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private TMP_Text coinsUI, timeUI, finishCoinsUI, finishTimeUI;
     [SerializeField] private Image[] hpUI;
     [SerializeField] private Sprite isLife, noLife;
     [SerializeField] private GameObject finishScreen, restartScreen, pauseScreen;
-    [SerializeField] private GameObject TurnOverCounterImage;
+    [FormerlySerializedAs("TurnOverCounterImage")] [SerializeField] private GameObject turnOverCounterImage;
 
     [SerializeField] private GameObject ratingStar;
     [SerializeField] private Transform parentStar;
@@ -17,31 +18,31 @@ public class HUD : MonoBehaviour
 
     [SerializeField] private TimeWork timeWork;
     [SerializeField] private float countdown = 60f;
-    private float levelTime = 0f;
-    [SerializeField] private readonly float levelTimeAAA = 120f;
+    private float _levelTime = 0f;
+    [SerializeField] private readonly float _levelTimeAaa = 120f;
 
     [SerializeField] private CoinBot coinBot;
-    [SerializeField] private SFXManager sfxManager;
+    [SerializeField] private SfxManager sfxManager;
 
 
 
     private void Start()
     {
         if ((int)timeWork == 2)
-            levelTime = countdown;
+            _levelTime = countdown;
 
         Time.timeScale = 1f;
         player.enabled = true;
         TurnOverCounter(false);
 
         ShowCoinsUI();
-        MakeHP();
+        MakeHp();
     }
 
 
     private void FixedUpdate()
     {
-        TimeManagment();
+        TimeManagement();
     }
 
 
@@ -50,19 +51,19 @@ public class HUD : MonoBehaviour
         coinsUI.text = player.GetCoins().ToString("00");
     }
 
-    private void TimeManagment()
+    private void TimeManagement()
     {
         if ((int)timeWork == 1)
         {
-            levelTime += Time.fixedDeltaTime;
-            timeUI.text = ShowGameTime(levelTime);
+            _levelTime += Time.fixedDeltaTime;
+            timeUI.text = ShowGameTime(_levelTime);
         }
         else
         if ((int)timeWork == 2)
         {
-            levelTime -= Time.fixedDeltaTime;
-            timeUI.text = ShowGameTime(levelTime);
-            if (levelTime <= 0)
+            _levelTime -= Time.fixedDeltaTime;
+            timeUI.text = ShowGameTime(_levelTime);
+            if (_levelTime <= 0)
                 MakeRestartScreen();
         }
         else
@@ -70,24 +71,19 @@ public class HUD : MonoBehaviour
     }
 
 
-    public string ShowGameTime(float gameTime)
+    private static string ShowGameTime(float gameTime)
     {
-        int minutes = (int)gameTime / 60;
-        int seconds = (int)gameTime - ((int)gameTime / 60) * 60;
+        var minutes = (int)gameTime / 60;
+        var seconds = (int)gameTime - ((int)gameTime / 60) * 60;
 
         return minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
 
-    public void MakeHP()
+    public void MakeHp()
     {
-        for (int i = 0; i < hpUI.Length; i++)
-        {
-            if (player.GetHealth() > i)
-                hpUI[i].sprite = isLife;
-            else
-                hpUI[i].sprite = noLife;
-        }
+        for (var i = 0; i < hpUI.Length; i++)
+            hpUI[i].sprite = player.GetHealth() > i ? isLife : noLife;
     }
 
 
@@ -109,14 +105,14 @@ public class HUD : MonoBehaviour
 
     public void Finish()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         player.enabled = false;
-        finishScreen.SetActive(true);
-        int lvl = Global.GetLevel();
-        int lvlRating = GetLevelRating();
-        sfxManager.PlayFinishSFX();
+        finishScreen.GetComponent<Animator>().SetTrigger("Finish");
+        var lvl = Global.Level;
+        var lvlRating = GetLevelRating();
+        sfxManager.PlayFinishSfx();
 
-        if (!PlayerPrefs.HasKey("Level") || PlayerPrefs.GetInt("Level") < lvl || lvl == Global.GetMaxLevel())
+        if (!PlayerPrefs.HasKey("Level") || PlayerPrefs.GetInt("Level") < lvl || lvl == Global.MaxLevel)
             PlayerPrefs.SetInt("Level", lvl);
 
         if (!PlayerPrefs.HasKey("Coins" + lvl.ToString()))
@@ -128,7 +124,7 @@ public class HUD : MonoBehaviour
             PlayerPrefs.SetInt("CoinsTotal", PlayerPrefs.GetInt("CoinsTotal") + player.GetCoins());
 
         if (!PlayerPrefs.HasKey("Time" + lvl.ToString()))
-            PlayerPrefs.SetFloat("Time" + lvl.ToString(), levelTime);
+            PlayerPrefs.SetFloat("Time" + lvl.ToString(), _levelTime);
 
         if (!PlayerPrefs.HasKey("Rating" + lvl.ToString()))
             PlayerPrefs.SetInt("Rating" + lvl.ToString(), lvlRating);
@@ -136,16 +132,16 @@ public class HUD : MonoBehaviour
         PlayerPrefs.Save();
 
         finishCoinsUI.text = player.GetCoins().ToString("00");
-        finishTimeUI.text = ShowGameTime(levelTime);
+        finishTimeUI.text = ShowGameTime(_levelTime);
         MakeRatingStars(lvlRating);
     }
 
 
     private int GetLevelRating()
     {
-        float coinRating = (float)player.GetCoins() / (float)coinBot.GetCreatedCoins();
-        float timeRating = levelTimeAAA / levelTime;
-        int rating = 0;
+        var coinRating = (float)player.GetCoins() / (float)coinBot.GetCreatedCoins();
+        var timeRating = _levelTimeAaa / _levelTime;
+        var rating = 0;
 
         if (coinRating + timeRating <= 0.7f) rating = 1;
         if (coinRating + timeRating > 0.7f) rating = 2;
@@ -155,16 +151,16 @@ public class HUD : MonoBehaviour
     }
 
 
-    public void MakeRatingStars(int rating)
+    private void MakeRatingStars(int rating)
     {
-        for (int i=rating-1; i>=0; i--)
+        for (var i=rating-1; i>=0; i--)
         {
+            var transform1 = parentStar.transform;
+            var position = transform1.position;
             Instantiate(
                 ratingStar,
-                new Vector3 (parentStar.transform.position.x - starDistance * (2*i - rating + 1),
-                             parentStar.transform.position.y,
-                             parentStar.transform.position.z),
-                parentStar.transform.rotation);
+                new Vector3 (position.x - starDistance * (2*i - rating + 1), position.y, position.z),
+                transform1.rotation);
         }
     }
 
@@ -174,13 +170,13 @@ public class HUD : MonoBehaviour
         Time.timeScale = 0f;
         player.enabled = false;
         restartScreen.SetActive(true);
-        sfxManager.PlayRestartSFX();
+        sfxManager.PlayRestartSfx();
     }
 
 
     public void TurnOverCounter(bool state)
     {
-        TurnOverCounterImage.SetActive(state);
+        turnOverCounterImage.SetActive(state);
     }
 }
 

@@ -1,56 +1,15 @@
-using UnityEngine;
-
-class Global : MonoBehaviour
+public static class Global
 {
-    [SerializeField] GameObject groundPrefab;
-    private static float lengthX = 0;
+    private static int _level = 1, _maxLevel = 4;
+    private static int _levelSize = 10;                  // Level Length = (levelSize) Screens
+    private static int _hero = 1, _car = 1, _maxCar = 6;
+    private static float _lengthX = 19.20f;              // 1920px
 
-    private static int level = 1, maxLevel = 4;
-    private static int levelSize = 50;  // Level Length = (levelSize) Screens
-    private static int hero = 1, car = 1, maxCar = 6;
-
-    private void Awake()
-    {
-        lengthX = groundPrefab.transform.GetComponent<SpriteRenderer>().bounds.size.x;
-    }
-
-    public static float GetGroundPrefabSizeX()
-    {
-        return lengthX;
-    }
-    public static void SetLevel(int lvl)
-    { level = lvl; }
-
-    public static int GetLevel()
-    { return level; }
-
-    public static int GetMaxLevel()
-    { return maxLevel; }
-
-    public static void SetMaxLevel(int lvl)
-    { maxLevel = lvl; }
-
-    public static void SetHero(int hro)
-    { hero = hro; }
-
-    public static int GetHero()
-    { return hero; }
-
-    public static void SetCar(int cr)
-    { car = cr; }
-
-    public static int GetCar()
-    { return car; }
-
-    public static void SetMaxCar(int cr)
-    { maxCar = cr; }
-
-    public static int GetMaxCar()
-    { return maxCar; }
-
-    public static int GetLevelSize()
-    { return levelSize; }
-
-    public static void SetLevelSize(int size)
-    { levelSize = size; }
+    public static float GroundPrefabSizeX { get => _lengthX; set => _lengthX = GroundPrefabSizeX; }
+    public static int Level { get => _level; set => _level = Level; }
+    public static int MaxLevel { get => _maxLevel; set => _maxLevel = MaxLevel; }
+    public static int Hero { get => _hero; set => _hero = Hero; }
+    public static int Car { get => _car; set => _car = Car; }
+    public static int MaxCar { get => _maxCar; set => _maxCar = MaxCar; }
+    public static int LevelSize { get => _levelSize; set => _levelSize = LevelSize; }
 }

@@ -8,34 +8,34 @@ public class AnimObjBehaviour : MonoBehaviour
     [Range(11, 20)]
     [SerializeField] private float animDistance = 12;
 
-    private float cam2objDistance;
-    private Animator[] anim;
+    private float _cam2ObjDistance;
+    private Animator[] _anim;
 
     private void Start()
     {
-        anim = new Animator[animObjects.Length];
+        _anim = new Animator[animObjects.Length];
 
-        for (int i=0; i<animObjects.Length; i++)
+        for (var i=0; i<animObjects.Length; i++)
         {
-            anim[i] = animObjects[i].GetComponent<Animator>();
+            _anim[i] = animObjects[i].GetComponent<Animator>();
         }
     }
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < animObjects.Length; i++)
+        for (var i = 0; i < animObjects.Length; i++)
         {
-            cam2objDistance = Mathf.Abs(cam.transform.position.x - anim[i].transform.position.x);
+            _cam2ObjDistance = Mathf.Abs(cam.transform.position.x - _anim[i].transform.position.x);
 
-            if (cam2objDistance <= animDistance)
+            if (_cam2ObjDistance <= animDistance)
             {
-                if (!anim[i].GetBool("Action"))
-                    anim[i].SetBool("Action", true);
+                if (!_anim[i].GetBool("Action"))
+                    _anim[i].SetBool("Action", true);
             }
             else
             {
-                if (anim[i].GetBool("Action"))
-                    anim[i].SetBool("Action", false);
+                if (_anim[i].GetBool("Action"))
+                    _anim[i].SetBool("Action", false);
             }
         }
     }

@@ -27,38 +27,38 @@ public class MenuLevels : MonoBehaviour
     [SerializeField] private MenuManager menuManager;
 
 
-    private Vector2[] scrollingElementsPositions;
-    private RectTransform contentRect;
-    private int selectedScrollingElementsID;
-    private bool isScrolling = false;
-    private Vector2 contentVector = new Vector2();
-    private Vector2[] scrollingElementsScale;
-    [NonSerialized] public int scrollingElementsCounter;
-    private float[] originalImageScalesX;
-    private RectTransform[] scrollingImagesRect;
-    private float nearestPos, distance, scrollVelocity;
+    private Vector2[] _scrollingElementsPositions;
+    private RectTransform _contentRect;
+    private int _selectedScrollingElementsID;
+    private bool _isScrolling = false;
+    private Vector2 _contentVector = new Vector2();
+    private Vector2[] _scrollingElementsScale;
+    private int ScrollingElementsCounter;
+    private float[] _originalImageScalesX;
+    private RectTransform[] _scrollingImagesRect;
+    private float _nearestPos, _distance, _scrollVelocity;
 
 
-    void Start()
+    private void Start()
     {
-        scrollingElementsCounter = scrollingImages.Length;
-        scrollingElementsPositions = new Vector2[scrollingElementsCounter];
-        scrollingElementsScale = new Vector2[scrollingElementsCounter];
-        contentRect = GetComponent<RectTransform>();
-        originalImageScalesX = new float[scrollingElementsCounter];
-        scrollingImagesRect = new RectTransform[scrollingElementsCounter];
+        ScrollingElementsCounter = scrollingImages.Length;
+        _scrollingElementsPositions = new Vector2[ScrollingElementsCounter];
+        _scrollingElementsScale = new Vector2[ScrollingElementsCounter];
+        _contentRect = GetComponent<RectTransform>();
+        _originalImageScalesX = new float[ScrollingElementsCounter];
+        _scrollingImagesRect = new RectTransform[ScrollingElementsCounter];
 
 
         // set hero settings
         if (PlayerPrefs.HasKey("Hero"))
-            Global.SetHero(PlayerPrefs.GetInt("Hero"));
+            Global.Hero = PlayerPrefs.GetInt("Hero");
 
         // set car settings
         if (PlayerPrefs.HasKey("Car"))
-            Global.SetCar(PlayerPrefs.GetInt("Car"));
+            Global.Car = PlayerPrefs.GetInt("Car");
 
 
-        for (int i = 0; i < scrollingElementsCounter; i++)
+        for (var i = 0; i < ScrollingElementsCounter; i++)
         {
             try
             {
@@ -90,33 +90,27 @@ public class MenuLevels : MonoBehaviour
 
     private void DrawCarScreen(int i)
     {
-        Global.SetMaxCar(scrollingElementsCounter);
+        Global.MaxCar = ScrollingElementsCounter;
         DrawScrollingElements(i);
     }
 
 
     private void DrawLevelScreen(int i)
     {
-        Global.SetMaxLevel(scrollingElementsCounter);
+        Global.MaxLevel = ScrollingElementsCounter;
 
-        string _tmptext;
+        string tmptext;
 
         // get records
         // coins
-        if (PlayerPrefs.HasKey("Coins" + (i + 1).ToString()))
-            _tmptext = PlayerPrefs.GetInt("Coins" + (i + 1).ToString()).ToString("D5");
-        else
-            _tmptext = "00000";
+        tmptext = PlayerPrefs.HasKey("Coins" + (i + 1).ToString()) ? PlayerPrefs.GetInt("Coins" + (i + 1).ToString()).ToString("D5") : "00000";
 
-        scrollingImages[i].transform.Find("Coins").GetComponent<TMP_Text>().text = _tmptext;
+        scrollingImages[i].transform.Find("Coins").GetComponent<TMP_Text>().text = tmptext;
 
         // time
-        if (PlayerPrefs.HasKey("Time" + (i + 1).ToString()))
-            _tmptext = ShowTime(PlayerPrefs.GetFloat("Time" + (i + 1).ToString()));
-        else
-            _tmptext = "00:00";
+        tmptext = PlayerPrefs.HasKey("Time" + (i + 1).ToString()) ? ShowTime(PlayerPrefs.GetFloat("Time" + (i + 1).ToString())) : "00:00";
 
-        scrollingImages[i].transform.Find("Time").GetComponent<TMP_Text>().text = _tmptext;
+        scrollingImages[i].transform.Find("Time").GetComponent<TMP_Text>().text = tmptext;
 
         // set level settings
         if (PlayerPrefs.HasKey("Level") && i <= PlayerPrefs.GetInt("Level") || i == 0)
@@ -131,77 +125,75 @@ public class MenuLevels : MonoBehaviour
 
     private void DrawScrollingElements(int i)
     {
-        scrollingImagesRect[i] = scrollingImages[i].GetComponent<RectTransform>();
+        _scrollingImagesRect[i] = scrollingImages[i].GetComponent<RectTransform>();
 
-        scrollingImagesRect[i].anchoredPosition = new Vector2(
-            (scrollingImagesRect[i].sizeDelta.x + scrollingElementsDistance) * i, 0);
+        _scrollingImagesRect[i].anchoredPosition = new Vector2(
+            (_scrollingImagesRect[i].sizeDelta.x + scrollingElementsDistance) * i, 0);
 
-        scrollingElementsPositions[i] = -scrollingImagesRect[i].anchoredPosition;
-        originalImageScalesX[i] = scrollingImagesRect[i].localScale.x;
+        _scrollingElementsPositions[i] = -_scrollingImagesRect[i].anchoredPosition;
+        _originalImageScalesX[i] = _scrollingImagesRect[i].localScale.x;
     }
 
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (contentRect.anchoredPosition.x <= scrollingElementsPositions[0].x && !isScrolling ||
-            contentRect.anchoredPosition.x >= scrollingElementsPositions[scrollingElementsPositions.Length - 1].x &&
-            !isScrolling)
+        if (_contentRect.anchoredPosition.x <= _scrollingElementsPositions[0].x && !_isScrolling ||
+            _contentRect.anchoredPosition.x >= _scrollingElementsPositions[_scrollingElementsPositions.Length - 1].x &&
+            !_isScrolling)
             scrollRect.inertia = false;
 
 
-        nearestPos = float.MaxValue;
-        for (int i = 0; i < scrollingElementsCounter; i++)
+        _nearestPos = float.MaxValue;
+        for (var i = 0; i < ScrollingElementsCounter; i++)
         {
-            distance = Mathf.Abs(contentRect.anchoredPosition.x - scrollingElementsPositions[i].x);
-            if (distance < nearestPos)
+            _distance = Mathf.Abs(_contentRect.anchoredPosition.x - _scrollingElementsPositions[i].x);
+            if (_distance < _nearestPos)
             {
-                nearestPos = distance;
-                selectedScrollingElementsID = i;
+                _nearestPos = _distance;
+                _selectedScrollingElementsID = i;
             }
             SnapElement(i);
         }
 
-        scrollVelocity = Mathf.Abs(scrollRect.velocity.x);
+        _scrollVelocity = Mathf.Abs(scrollRect.velocity.x);
 
-        if (!isScrolling || scrollVelocity < 400)
-        {
-            scrollRect.inertia = false;
-            contentVector.x = Mathf.SmoothStep(
-                contentRect.anchoredPosition.x,
-                scrollingElementsPositions[selectedScrollingElementsID].x,
-                snapSpeed * Time.fixedDeltaTime);
-            contentRect.anchoredPosition = contentVector;
-        }
+        if (_isScrolling && !(_scrollVelocity < 400)) return;
+        scrollRect.inertia = false;
+        _contentVector.x = Mathf.SmoothStep(
+            _contentRect.anchoredPosition.x,
+            _scrollingElementsPositions[_selectedScrollingElementsID].x,
+            snapSpeed * Time.fixedDeltaTime);
+        _contentRect.anchoredPosition = _contentVector;
     }
 
 
     private void SnapElement(int id)
     {
-        Vector2 imageScale = scrollingImagesRect[id].localScale;
+        Vector2 imageScale = _scrollingImagesRect[id].localScale;
 
-        float scale = Mathf.Clamp(
-            originalImageScalesX[id] / (distance / scrollingElementsDistance) * scaleOffset,
-            0.5f * originalImageScalesX[id],
-            originalImageScalesX[id]);
+        var scale = Mathf.Clamp(
+            _originalImageScalesX[id] / (_distance / scrollingElementsDistance) * scaleOffset,
+            0.5f * _originalImageScalesX[id],
+            _originalImageScalesX[id]);
 
-        scrollingElementsScale[id] = new Vector2(
+        _scrollingElementsScale[id] = new Vector2(
             Mathf.SmoothStep(imageScale.x, scale, scaleSpeed * Time.fixedDeltaTime),
             Mathf.SmoothStep(imageScale.y, scale, scaleSpeed * Time.fixedDeltaTime));
 
-        scrollingImagesRect[id].localScale = scrollingElementsScale[id];
+        _scrollingImagesRect[id].localScale = _scrollingElementsScale[id];
     }
 
     public void Scrolling(bool scrolling)
     {
-        isScrolling = scrolling;
-        if (isScrolling) scrollRect.inertia = true;
+        _isScrolling = scrolling;
+        if (_isScrolling) scrollRect.inertia = true;
     }
 
 
-    public string ShowTime(float gameTime)
+    private static string ShowTime(float gameTime)
     {
-        int minutes = (int)gameTime / 60;
-        int seconds = (int)gameTime - ((int)gameTime / 60) * 60;
+        var minutes = (int)gameTime / 60;
+        var seconds = (int)gameTime - ((int)gameTime / 60) * 60;
 
         return minutes.ToString("00") + ":" + seconds.ToString("00");
     }
@@ -210,5 +202,10 @@ public class MenuLevels : MonoBehaviour
     public void DeleteAllKeys()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public int GetScrollingElementCounter()
+    {
+        return ScrollingElementsCounter;
     }
 }

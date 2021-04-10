@@ -3,66 +3,67 @@ using UnityEngine;
 
 public class Competitor : MonoBehaviour
 {
-    private WheelJoint2D[] wheelJoints;
-    private JointMotor2D wheels;
+    private WheelJoint2D[] _wheelJoints;
+    private JointMotor2D _wheels;
 
-    private readonly float acceleration = 200;
-    private readonly float maxSpeed = 1500;
+    private const float _acceleration = 200;
+    private const float _maxSpeed = 1500;
 
-    private readonly float angleTimer = 5;
-    private float angleTime;
+    private const float _angleTimer = 5;
+    private float _angleTime;
 
-    private readonly int maxHealth = 3;
-    private int currentHealth;
-    private int coins = 0;
+    private const int _maxHealth = 3;
+    private int _currentHealth;
+    private int _coins = 0;
 
-    private bool isFinished = false;
+    private bool _isFinished = false;
 
 
-    void Start()
+    private void Start()
     {
-        wheelJoints = GetComponents<WheelJoint2D>();
-        wheels = wheelJoints[0].motor;
-        currentHealth = maxHealth;
-        angleTime = angleTimer;
+        _wheelJoints = GetComponents<WheelJoint2D>();
+        _wheels = _wheelJoints[0].motor;
+        _currentHealth = _maxHealth;
+        _angleTime = _angleTimer;
     }
 
 
     private void FixedUpdate()
     {
-        if (currentHealth > 0 && !isFinished)
+        if (_currentHealth > 0 && !_isFinished)
         {
             try
             {
                 // Forward Move (Right)
-                if (wheels.motorSpeed >= -maxSpeed &&
+                if (_wheels.motorSpeed >= -_maxSpeed &&
                     transform.rotation.z < 0.5f)
                 {
-                    if (wheels.motorSpeed >= -maxSpeed)
-                        wheels.motorSpeed = -maxSpeed;
+                    if (_wheels.motorSpeed >= -_maxSpeed)
+                        _wheels.motorSpeed = -_maxSpeed;
                     else
-                    if (wheels.motorSpeed > 0)
-                        wheels.motorSpeed = 0;
+                    if (_wheels.motorSpeed > 0)
+                        _wheels.motorSpeed = 0;
                     else
-                        wheels.motorSpeed -= acceleration * Time.fixedDeltaTime;
+                        _wheels.motorSpeed -= _acceleration * Time.fixedDeltaTime;
                 }
                 else
                 // Back Move (Left)
                 {
-                    if (wheels.motorSpeed >= maxSpeed)
-                        wheels.motorSpeed = maxSpeed;
+                    if (_wheels.motorSpeed >= _maxSpeed)
+                        _wheels.motorSpeed = _maxSpeed;
                     else
-                    if (wheels.motorSpeed < 0)
-                        wheels.motorSpeed = 0;
+                    if (_wheels.motorSpeed < 0)
+                        _wheels.motorSpeed = 0;
                     else
-                        wheels.motorSpeed += acceleration * Time.fixedDeltaTime;
+                        _wheels.motorSpeed += _acceleration * Time.fixedDeltaTime;
                 }
 
-                wheelJoints[1].motor = wheels; // backWheel = frontWheel
-                wheelJoints[0].motor = wheels;
+                _wheelJoints[1].motor = _wheels; // backWheel = frontWheel
+                _wheelJoints[0].motor = _wheels;
             }
             catch (Exception error)
             {
+                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                 Debug.LogError(error);
             }
 
@@ -70,9 +71,9 @@ public class Competitor : MonoBehaviour
         }
         else
         {
-            wheels.motorSpeed = 0;
-            wheelJoints[1].motor = wheels; // backWheel = frontWheel
-            wheelJoints[0].motor = wheels;
+            _wheels.motorSpeed = 0;
+            _wheelJoints[1].motor = _wheels; // backWheel = frontWheel
+            _wheelJoints[0].motor = _wheels;
         }
     }
 
@@ -81,60 +82,58 @@ public class Competitor : MonoBehaviour
     {
         if (Mathf.Abs(transform.rotation.z) > 0.5f)
         {
-            angleTime -= Time.fixedDeltaTime;
+            _angleTime -= Time.fixedDeltaTime;
 
-            if (angleTime <= 0)
+            if (!(_angleTime <= 0)) return;
+            if (_currentHealth > 1)
             {
-                if (currentHealth > 1)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                    angleTime = angleTimer;
-                }
-                RecountHealth(-1);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                _angleTime = _angleTimer;
             }
+            RecountHealth(-1);
         }
         else
-            angleTime = angleTimer;
+            _angleTime = _angleTimer;
     }
 
 
-    public void RecountHealth(int deltaHealth)
+    private void RecountHealth(int deltaHealth)
     {
-        currentHealth += deltaHealth;
+        _currentHealth += deltaHealth;
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
-            currentHealth = 0;
+            _currentHealth = 0;
         }
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
+        if (_currentHealth > _maxHealth)
+            _currentHealth = _maxHealth;
     }
 
 
-    public void SetIsFinished(bool isfin)
+    public void SetIsFinished(bool isFinish)
     {
-        isFinished = isfin;
+        _isFinished = isFinish;
     }
 
     public bool GetIsFinished()
     {
-        return isFinished;
+        return _isFinished;
     }
 
     public int GetCoins()
     {
-        return coins;
+        return _coins;
     }
 
-    public void SetCoins(int _coins)
+    public void SetCoins(int coins)
     {
-        coins += _coins;
+        this._coins += coins;
     }
 
 
     public int GetHealth()
     {
-        return currentHealth;
+        return _currentHealth;
     }
 }

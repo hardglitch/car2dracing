@@ -6,16 +6,16 @@ public class LevelMngr : MonoBehaviour
     public void OpenScene(int scn)
     {
         Time.timeScale = 1;
-        Global.SetLevel(scn);
+        Global.Level = scn;
         SceneManager.LoadScene(1);
     }
 
 
     public void NextLevel()
     {
-        int lvl = Global.GetLevel();
-        if (Global.GetLevel() < Global.GetMaxLevel())
-            Global.SetLevel(++lvl);
+        var lvl = Global.Level;
+        if (Global.Level < Global.MaxLevel)
+            Global.Level = ++lvl;
         Time.timeScale = 1;
         OpenScene(lvl);
     }
@@ -24,7 +24,7 @@ public class LevelMngr : MonoBehaviour
     public void ReloadLevel()
     {
         Time.timeScale = 1;
-        OpenScene(Global.GetLevel());
+        OpenScene(Global.Level);
     }
 
 

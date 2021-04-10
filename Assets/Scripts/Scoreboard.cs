@@ -4,29 +4,29 @@ using UnityEngine;
 public class Scoreboard : MonoBehaviour
 {
     [SerializeField] private Sprite[] carIcons;
-    private string[] winPlaces = { "", "", "" };
+    private readonly string[] _winPlaces = { "", "", "" };
 
 
-    public void PushPlaceholderValue(string _carName)
+    public void PushPlaceholderValue(string carName)
     {
-        int _carNumber = Convert.ToInt32(_carName.Substring(_carName.Length-1));
+        var carNumber = Convert.ToInt32(carName.Substring(carName.Length-1));
 
-        for (int i=0; i<winPlaces.Length; i++)
-            if (winPlaces[i].Equals("") && !winPlaces[0].Equals(_carName) && !winPlaces[1].Equals(_carName))
+        for (var i=0; i<_winPlaces.Length; i++)
+            if (_winPlaces[i].Equals("") && !_winPlaces[0].Equals(carName) && !_winPlaces[1].Equals(carName))
             {
-                winPlaces[i] = _carName;
-                SetPlaceholderValue(i + 1, _carNumber);
+                _winPlaces[i] = carName;
+                SetPlaceholderValue(i + 1, carNumber);
                 break;
             }
     }
 
-    public void SetPlaceholderValue(int _placeholderNumber, int _carNumber)
+    private void SetPlaceholderValue(int placeholderNumber, int carNumber)
     {
-        if (_placeholderNumber < 1) _placeholderNumber = 1;
-        if (_placeholderNumber > 3) _placeholderNumber = 3;
-        if (_carNumber < 1) _carNumber = 1;
-        if (_carNumber > 6) _carNumber = 6;
+        if (placeholderNumber < 1) placeholderNumber = 1;
+        if (placeholderNumber > 3) placeholderNumber = 3;
+        if (carNumber < 1) carNumber = 1;
+        if (carNumber > 6) carNumber = 6;
 
-        GameObject.Find("Placeholder " + _placeholderNumber.ToString()).GetComponent<SpriteRenderer>().sprite = carIcons[_carNumber - 1];
+        GameObject.Find("Placeholder " + placeholderNumber.ToString()).GetComponent<SpriteRenderer>().sprite = carIcons[carNumber - 1];
     }
 }

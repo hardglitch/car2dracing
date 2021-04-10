@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour
 {
-    private HUD objHUD;
-    private Player player;
-    private SFXManager sfxManager;
-    private Scoreboard scoreBoard;
+    private Hud _objHud;
+    private Player _player;
+    private SfxManager _sfxManager;
+    private Scoreboard _scoreBoard;
 
-    public void SetHUD(HUD _hud)
-    { objHUD = _hud; }
+    public void SetHud(Hud hud)
+    { _objHud = hud; }
 
-    public void SetPlayer(Player _player)
-    { player = _player; }
+    public void SetPlayer(Player player)
+    { this._player = player; }
 
-    public void SetSfxManager(SFXManager _sfx)
-    { sfxManager = _sfx; }
+    public void SetSfxManager(SfxManager sfx)
+    { _sfxManager = sfx; }
 
-    public void SetScoreboard(Scoreboard _scoreBoard)
-    { scoreBoard = _scoreBoard; }
+    public void SetScoreboard(Scoreboard scoreBoard)
+    { this._scoreBoard = scoreBoard; }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,11 +25,19 @@ public class CarScript : MonoBehaviour
         if (collision.gameObject.CompareTag("MaxX"))  // Finish
         {
             GetComponent<Competitor>().SetIsFinished(true);
-            scoreBoard.PushPlaceholderValue(gameObject.name);
+            _scoreBoard.PushPlaceholderValue(gameObject.name);
+
             //Finish Scene
+            if (gameObject.layer == LayerMask.NameToLayer("Player")) _objHud.Finish();
         }
 
         OnItemCollisionDynamic(collision);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnItemCollisionStatic(collision);
     }
 
 
@@ -38,16 +46,14 @@ public class CarScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
-            player.SetCoins(+1);
-            objHUD.ShowCoinsUI();
-            sfxManager.PlayCoinSFX();
+            _player.SetCoins(+1);
+            _objHud.ShowCoinsUI();
+            _sfxManager.PlayCoinSfx();
         }
 
-        if (collision.gameObject.CompareTag("HP"))
-        {
-            Destroy(collision.gameObject);
-            player.RecountHealth(+1);
-        }
+        if (!collision.gameObject.CompareTag("HP")) return;
+        Destroy(collision.gameObject);
+        _player.RecountHealth(+1);
     }
 
 
@@ -56,15 +62,13 @@ public class CarScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
-            objHUD.ShowCoinsUI();
-            player.SetCoins(+1);
-            sfxManager.PlayCoinSFX();
+            _player.SetCoins(+1);
+            _objHud.ShowCoinsUI();
+            _sfxManager.PlayCoinSfx();
         }
 
-        if (collision.gameObject.CompareTag("HP"))
-        {
-            Destroy(collision.gameObject);
-            player.RecountHealth(+1);
-        }
+        if (!collision.gameObject.CompareTag("HP")) return;
+        Destroy(collision.gameObject);
+        _player.RecountHealth(+1);
     }
 }

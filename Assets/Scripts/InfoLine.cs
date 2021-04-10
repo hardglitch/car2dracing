@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InfoLine : MonoBehaviour
 {
@@ -25,27 +26,28 @@ public class InfoLine : MonoBehaviour
 
 
     [SerializeField] private CarInfo[] cars;
-    [SerializeField] private GameObject _minX;
-    private float minX_InfoLine = -560,
-                  maxX_InfoLine = 566,
-                  posX_InfoLine = 0,
-                  minX_Level = 0,
-                  maxX_Level = 0;
+    [FormerlySerializedAs("_minX")] [SerializeField] private GameObject minX;
+    private const float _minXInfoLine = -560;
+    private const float _maxXInfoLine = 566;
+
+    private float _posXInfoLine = 0,
+                  _minXLevel = 0,
+                  _maxXLevel = 0;
 
 
-    void Start()
+    private void Start()
     {
-        minX_Level = _minX.transform.position.x;
-        maxX_Level = Global.GetGroundPrefabSizeX() * Global.GetLevelSize() - 5.6f;
+        _minXLevel = minX.transform.position.x;
+        _maxXLevel = Global.GroundPrefabSizeX * Global.LevelSize - 5.6f;
     }
 
 
-    void Update()
+    private void Update()
     {
-        for (int i=0; i<Global.GetMaxCar(); i++)
+        for (var i=0; i<Global.MaxCar; i++)
         {
-            posX_InfoLine = minX_InfoLine + cars[i].GetPosXLevel() * (maxX_InfoLine - minX_InfoLine) / ((maxX_Level - minX_Level));
-            cars[i].SetPosXInfoLine(posX_InfoLine);
+            _posXInfoLine = _minXInfoLine + cars[i].GetPosXLevel() * (_maxXInfoLine - _minXInfoLine) / ((_maxXLevel - _minXLevel));
+            cars[i].SetPosXInfoLine(_posXInfoLine);
         }
     }
 }
