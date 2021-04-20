@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject players;
     [SerializeField] private GameObject coinBot;
-    private Transform _player;
-    private const float _minX = 0;
-    private float _maxX = 0;
-    private const float _minY = 0;
-    private const float _maxY = 10f;
+    private Transform _players;
+    private const float MinX = 0;
+    private float _maxX;
+    private const float MinY = 0;
+    private const float MaxY = 10f;
 
     private void Start()
     {
         _maxX = Global.GroundPrefabSizeX * Global.LevelSize - 2f;
-        _player = player.transform.Find("Car " + Global.Car.ToString());
+        _players = players.transform.Find("Car " + Global.Car);
     }
 
     private void Update()
@@ -34,12 +34,12 @@ public class CameraBehavior : MonoBehaviour
     {
         try
         {
-            var camX = _player.position.x;
-            var camY = _player.position.y;
+            var camX = _players.position.x;
+            var camY = _players.position.y;
 
             transform.position = new Vector3(
-                Mathf.Clamp(camX, _minX, _maxX),
-                Mathf.Clamp(camY, _minY, _maxY),
+                Mathf.Clamp(camX, MinX, _maxX),
+                Mathf.Clamp(camY, MinY, MaxY),
                 transform.position.z
             );
         }

@@ -4,8 +4,8 @@ public class Ground : MonoBehaviour
 {
     [SerializeField] private GameObject groundPrefab, spikesPrefab;
     private GameObject _ground, _spikes;
-    private Vector3 _startPos = new Vector3(), 
-                    _spikesPos = new Vector3();
+    private Vector3 _startPos, 
+                    _spikesPos;
 
     private void Start()
     {

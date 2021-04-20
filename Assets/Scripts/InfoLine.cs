@@ -1,42 +1,47 @@
+//This should be on "Main Camera" in Unity
+
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class InfoLine : MonoBehaviour
 {
-
     [Serializable]
     public class CarInfo
     {
         [SerializeField] private GameObject carGO;
         [SerializeField] private GameObject carIcon;
-
-        public CarInfo() { }
-
-        public float GetPosXLevel()
+        
+        protected internal float? PosXLevel => carGO.transform.position.x;
+        protected internal float? PosXInfoLine
         {
-            return carGO.transform.position.x;
-        }
-
-        public void SetPosXInfoLine(float newPosX)
-        {
-            carIcon.transform.localPosition = new Vector2(newPosX, carIcon.transform.localPosition.y);
+            // ReSharper disable once Unity.InefficientPropertyAccess
+            set
+            {
+                if (carIcon is null || value == null) return;
+                carIcon.transform.localPosition = new Vector3(
+                    (float) value,
+                    carIcon.transform.localPosition.y,
+                    // ReSharper disable once Unity.InefficientPropertyAccess
+                    carIcon.transform.localPosition.z);
+            }
         }
     }
 
 
     [SerializeField] private CarInfo[] cars;
-    [FormerlySerializedAs("_minX")] [SerializeField] private GameObject minX;
-    private const float _minXInfoLine = -560;
-    private const float _maxXInfoLine = 566;
+    [SerializeField] private GameObject minX;
+    private const float MinXInfoLine = -560,
+                        MaxXInfoLine = 566;
 
-    private float _posXInfoLine = 0,
-                  _minXLevel = 0,
-                  _maxXLevel = 0;
+    private float? _posXInfoLine;
+
+    private float _minXLevel,
+                  _maxXLevel;
 
 
     private void Start()
     {
+        //cars = new CarInfo[Global.MaxCar];
         _minXLevel = minX.transform.position.x;
         _maxXLevel = Global.GroundPrefabSizeX * Global.LevelSize - 5.6f;
     }
@@ -46,8 +51,8 @@ public class InfoLine : MonoBehaviour
     {
         for (var i=0; i<Global.MaxCar; i++)
         {
-            _posXInfoLine = _minXInfoLine + cars[i].GetPosXLevel() * (_maxXInfoLine - _minXInfoLine) / ((_maxXLevel - _minXLevel));
-            cars[i].SetPosXInfoLine(_posXInfoLine);
+            _posXInfoLine = MinXInfoLine + cars[i].PosXLevel * (MaxXInfoLine - MinXInfoLine) / ((_maxXLevel - _minXLevel));
+            cars[i].PosXInfoLine = _posXInfoLine;
         }
     }
 }

@@ -1,9 +1,11 @@
+//This may be on "Scoreboard" in Unity
+
 using System;
 using UnityEngine;
 
 public class Scoreboard : MonoBehaviour
 {
-    [SerializeField] private Sprite[] carIcons;
+    internal GameObject[] Cars { get; set; }
     private readonly string[] _winPlaces = { "", "", "" };
 
 
@@ -25,8 +27,9 @@ public class Scoreboard : MonoBehaviour
         if (placeholderNumber < 1) placeholderNumber = 1;
         if (placeholderNumber > 3) placeholderNumber = 3;
         if (carNumber < 1) carNumber = 1;
-        if (carNumber > 6) carNumber = 6;
+        if (carNumber > Global.MaxCar) carNumber = Global.MaxCar;
 
-        GameObject.Find("Placeholder " + placeholderNumber.ToString()).GetComponent<SpriteRenderer>().sprite = carIcons[carNumber - 1];
+        GameObject.Find("Placeholder " + placeholderNumber).GetComponent<SpriteRenderer>().sprite =
+            Cars[carNumber - 1].transform.Find("Icon").GetComponent<SpriteRenderer>().sprite;
     }
 }

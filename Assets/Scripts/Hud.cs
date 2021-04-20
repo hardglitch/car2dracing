@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Serialization;
 
 public class Hud : MonoBehaviour
 {
-    [SerializeField] private Player player;
     [SerializeField] private TMP_Text coinsUI, timeUI, finishCoinsUI, finishTimeUI;
     [SerializeField] private Image[] hpUI;
     [SerializeField] private Sprite isLife, noLife;
     [SerializeField] private GameObject finishScreen, restartScreen, pauseScreen;
-    [FormerlySerializedAs("TurnOverCounterImage")] [SerializeField] private GameObject turnOverCounterImage;
+    [SerializeField] private GameObject turnOverCounterImage;
+
+    internal Car Player { get; set; }
+    internal GameObject AngleTimerObj => turnOverCounterImage;
 
     [SerializeField] private GameObject ratingStar;
     [SerializeField] private Transform parentStar;
@@ -18,12 +19,12 @@ public class Hud : MonoBehaviour
 
     [SerializeField] private TimeWork timeWork;
     [SerializeField] private float countdown = 60f;
-    private float _levelTime = 0f;
-    [SerializeField] private readonly float _levelTimeAaa = 120f;
+    private float _levelTime;
+    [SerializeField] private float levelTimeAaa = 120f;
 
     [SerializeField] private CoinBot coinBot;
     [SerializeField] private SfxManager sfxManager;
-
+    private static readonly int Finish1 = Animator.StringToHash("Finish");
 
 
     private void Start()
@@ -32,7 +33,7 @@ public class Hud : MonoBehaviour
             _levelTime = countdown;
 
         Time.timeScale = 1f;
-        player.enabled = true;
+        Player.enabled = true;
         TurnOverCounter(false);
 
         ShowCoinsUI();
@@ -48,26 +49,26 @@ public class Hud : MonoBehaviour
 
     public void ShowCoinsUI()
     {
-        coinsUI.text = player.GetCoins().ToString("00");
+        coinsUI.text = Player.Coins.ToString("00");
     }
 
     private void TimeManagement()
     {
-        if ((int)timeWork == 1)
+        switch ((int)timeWork)
         {
-            _levelTime += Time.fixedDeltaTime;
-            timeUI.text = ShowGameTime(_levelTime);
+            case 1:
+                _levelTime += Time.fixedDeltaTime;
+                timeUI.text = ShowGameTime(_levelTime);
+                break;
+            case 2:
+                _levelTime -= Time.fixedDeltaTime;
+                timeUI.text = ShowGameTime(_levelTime);
+                if (_levelTime <= 0) MakeRestartScreen();
+                break;
+            default:
+                timeUI.gameObject.SetActive(false);
+                break;
         }
-        else
-        if ((int)timeWork == 2)
-        {
-            _levelTime -= Time.fixedDeltaTime;
-            timeUI.text = ShowGameTime(_levelTime);
-            if (_levelTime <= 0)
-                MakeRestartScreen();
-        }
-        else
-            timeUI.gameObject.SetActive(false);
     }
 
 
@@ -83,14 +84,14 @@ public class Hud : MonoBehaviour
     public void MakeHp()
     {
         for (var i = 0; i < hpUI.Length; i++)
-            hpUI[i].sprite = player.GetHealth() > i ? isLife : noLife;
+            hpUI[i].sprite = Player.Health > i ? isLife : noLife;
     }
 
 
     public void PauseScreenOn()
     {
         Time.timeScale = 0f;
-        player.enabled = false;
+        Player.enabled = false;
         pauseScreen.SetActive(true);
     }
 
@@ -98,7 +99,7 @@ public class Hud : MonoBehaviour
     public void PauseScreenOff()
     {
         Time.timeScale = 1f;
-        player.enabled = true;
+        Player.enabled = true;
         pauseScreen.SetActive(false);
     }
 
@@ -106,8 +107,8 @@ public class Hud : MonoBehaviour
     public void Finish()
     {
         //Time.timeScale = 0f;
-        player.enabled = false;
-        finishScreen.GetComponent<Animator>().SetTrigger("Finish");
+        Player.enabled = false;
+        finishScreen.GetComponent<Animator>().SetTrigger(Finish1);
         var lvl = Global.Level;
         var lvlRating = GetLevelRating();
         sfxManager.PlayFinishSfx();
@@ -115,23 +116,23 @@ public class Hud : MonoBehaviour
         if (!PlayerPrefs.HasKey("Level") || PlayerPrefs.GetInt("Level") < lvl || lvl == Global.MaxLevel)
             PlayerPrefs.SetInt("Level", lvl);
 
-        if (!PlayerPrefs.HasKey("Coins" + lvl.ToString()))
-            PlayerPrefs.SetInt("Coins" + lvl.ToString(), player.GetCoins());
+        if (!PlayerPrefs.HasKey("Coins" + lvl))
+            PlayerPrefs.SetInt("Coins" + lvl, Player.Coins);
 
         if (!PlayerPrefs.HasKey("CoinsTotal"))
-            PlayerPrefs.SetInt("CoinsTotal", player.GetCoins());
+            PlayerPrefs.SetInt("CoinsTotal", Player.Coins);
         else
-            PlayerPrefs.SetInt("CoinsTotal", PlayerPrefs.GetInt("CoinsTotal") + player.GetCoins());
+            PlayerPrefs.SetInt("CoinsTotal", PlayerPrefs.GetInt("CoinsTotal") + Player.Coins);
 
-        if (!PlayerPrefs.HasKey("Time" + lvl.ToString()))
-            PlayerPrefs.SetFloat("Time" + lvl.ToString(), _levelTime);
+        if (!PlayerPrefs.HasKey("Time" + lvl))
+            PlayerPrefs.SetFloat("Time" + lvl, _levelTime);
 
-        if (!PlayerPrefs.HasKey("Rating" + lvl.ToString()))
-            PlayerPrefs.SetInt("Rating" + lvl.ToString(), lvlRating);
+        if (!PlayerPrefs.HasKey("Rating" + lvl))
+            PlayerPrefs.SetInt("Rating" + lvl, lvlRating);
 
         PlayerPrefs.Save();
 
-        finishCoinsUI.text = player.GetCoins().ToString("00");
+        finishCoinsUI.text = Player.Coins.ToString("00");
         finishTimeUI.text = ShowGameTime(_levelTime);
         MakeRatingStars(lvlRating);
     }
@@ -139,8 +140,8 @@ public class Hud : MonoBehaviour
 
     private int GetLevelRating()
     {
-        var coinRating = (float)player.GetCoins() / (float)coinBot.GetCreatedCoins();
-        var timeRating = _levelTimeAaa / _levelTime;
+        var coinRating = Player.Coins / (float)coinBot.GetCreatedCoins();
+        var timeRating = levelTimeAaa / _levelTime;
         var rating = 0;
 
         if (coinRating + timeRating <= 0.7f) rating = 1;
@@ -168,7 +169,7 @@ public class Hud : MonoBehaviour
     public void MakeRestartScreen()
     {
         Time.timeScale = 0f;
-        player.enabled = false;
+        Player.enabled = false;
         restartScreen.SetActive(true);
         sfxManager.PlayRestartSfx();
     }

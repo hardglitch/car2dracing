@@ -1,17 +1,15 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CoinBot : MonoBehaviour
 {
     [Serializable]
     public class DropObject
     {
-        [FormerlySerializedAs("_GO")] [SerializeField] private GameObject go;
-        [FormerlySerializedAs("_dropInterval")] [SerializeField] private float dropInterval;
-        private float _counter = 0;
+        [SerializeField] private GameObject go;
+        [SerializeField] private float dropInterval;
+        private float _counter;
 
-        //public DropObject() { }
         public GameObject GetGO() { return go; }
         public float GetDropInterval() { return dropInterval; }
         public float GetCounter() { return _counter; }
@@ -26,9 +24,9 @@ public class CoinBot : MonoBehaviour
     [SerializeField] private DropObject[] dropItems;
 
     private const float _minDropX = 0;
-    private float _maxDropX = 0;
-    private bool _onCollision = false;
-    private int _createdCoins = 0;
+    private float _maxDropX;
+    private bool _onCollision;
+    private int _createdCoins;
 
 
     private void Start()

@@ -1,8 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-
 
 public class MenuLevels : MonoBehaviour
 {
@@ -30,10 +29,10 @@ public class MenuLevels : MonoBehaviour
     private Vector2[] _scrollingElementsPositions;
     private RectTransform _contentRect;
     private int _selectedScrollingElementsID;
-    private bool _isScrolling = false;
-    private Vector2 _contentVector = new Vector2();
+    private bool _isScrolling;
+    private Vector2 _contentVector;
     private Vector2[] _scrollingElementsScale;
-    private int ScrollingElementsCounter;
+    private int _scrollingElementsCounter;
     private float[] _originalImageScalesX;
     private RectTransform[] _scrollingImagesRect;
     private float _nearestPos, _distance, _scrollVelocity;
@@ -41,12 +40,12 @@ public class MenuLevels : MonoBehaviour
 
     private void Start()
     {
-        ScrollingElementsCounter = scrollingImages.Length;
-        _scrollingElementsPositions = new Vector2[ScrollingElementsCounter];
-        _scrollingElementsScale = new Vector2[ScrollingElementsCounter];
+        _scrollingElementsCounter = scrollingImages.Length;
+        _scrollingElementsPositions = new Vector2[_scrollingElementsCounter];
+        _scrollingElementsScale = new Vector2[_scrollingElementsCounter];
         _contentRect = GetComponent<RectTransform>();
-        _originalImageScalesX = new float[ScrollingElementsCounter];
-        _scrollingImagesRect = new RectTransform[ScrollingElementsCounter];
+        _originalImageScalesX = new float[_scrollingElementsCounter];
+        _scrollingImagesRect = new RectTransform[_scrollingElementsCounter];
 
 
         // set hero settings
@@ -58,7 +57,7 @@ public class MenuLevels : MonoBehaviour
             Global.Car = PlayerPrefs.GetInt("Car");
 
 
-        for (var i = 0; i < ScrollingElementsCounter; i++)
+        for (var i = 0; i < _scrollingElementsCounter; i++)
         {
             try
             {
@@ -90,25 +89,25 @@ public class MenuLevels : MonoBehaviour
 
     private void DrawCarScreen(int i)
     {
-        Global.MaxCar = ScrollingElementsCounter;
+        Global.MaxCar = _scrollingElementsCounter;
         DrawScrollingElements(i);
     }
 
 
     private void DrawLevelScreen(int i)
     {
-        Global.MaxLevel = ScrollingElementsCounter;
+        Global.MaxLevel = _scrollingElementsCounter;
 
         string tmptext;
 
         // get records
         // coins
-        tmptext = PlayerPrefs.HasKey("Coins" + (i + 1).ToString()) ? PlayerPrefs.GetInt("Coins" + (i + 1).ToString()).ToString("D5") : "00000";
+        tmptext = PlayerPrefs.HasKey("Coins" + (i + 1)) ? PlayerPrefs.GetInt("Coins" + (i + 1)).ToString("D5") : "00000";
 
         scrollingImages[i].transform.Find("Coins").GetComponent<TMP_Text>().text = tmptext;
 
         // time
-        tmptext = PlayerPrefs.HasKey("Time" + (i + 1).ToString()) ? ShowTime(PlayerPrefs.GetFloat("Time" + (i + 1).ToString())) : "00:00";
+        tmptext = PlayerPrefs.HasKey("Time" + (i + 1)) ? ShowTime(PlayerPrefs.GetFloat("Time" + (i + 1))) : "00:00";
 
         scrollingImages[i].transform.Find("Time").GetComponent<TMP_Text>().text = tmptext;
 
@@ -144,7 +143,7 @@ public class MenuLevels : MonoBehaviour
 
 
         _nearestPos = float.MaxValue;
-        for (var i = 0; i < ScrollingElementsCounter; i++)
+        for (var i = 0; i < _scrollingElementsCounter; i++)
         {
             _distance = Mathf.Abs(_contentRect.anchoredPosition.x - _scrollingElementsPositions[i].x);
             if (_distance < _nearestPos)
@@ -206,6 +205,6 @@ public class MenuLevels : MonoBehaviour
 
     public int GetScrollingElementCounter()
     {
-        return ScrollingElementsCounter;
+        return _scrollingElementsCounter;
     }
 }

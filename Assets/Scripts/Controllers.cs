@@ -1,10 +1,11 @@
+//This must be on "Players" in Unity
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Controllers : MonoBehaviour
 {
-    private bool _isClickedLeft = false;
-    private bool _isClickedRight = false;
+    private bool _isClickedLeft, _isTouchLeft;
+    private bool _isClickedRight, _isTouchRight;
     private PlayerController _playerController;
 
 
@@ -14,19 +15,26 @@ public class Controllers : MonoBehaviour
         _playerController.PlayerControllers.Move.performed += _ => Move();
     }
 
-    private void OnEnable()
-    { _playerController.Enable(); }
+    private void OnEnable() => _playerController.Enable();
 
-    private void OnDisable()
-    { _playerController.Disable(); }
+    private void OnDisable() => _playerController.Disable();
+
 
     private void Move()
     {
         var moveInput = _playerController.PlayerControllers.Move.ReadValue<float>();
 
-        if (moveInput > 0) ClickedRight(true);
+        if (moveInput > 0 || _isTouchRight)
+        {
+            _isClickedRight = true;
+            _isClickedLeft = false;
+        }
         else
-        if (moveInput < 0) ClickedLeft(true);
+        if (moveInput < 0 || _isTouchLeft)
+        {
+            _isClickedRight = false;
+            _isClickedLeft = true;
+        }
         else
         {
             _isClickedLeft = false;
@@ -39,23 +47,23 @@ public class Controllers : MonoBehaviour
         Move();
     }
 
-    public void ClickedLeft(bool isClicked)
-    { 
-        _isClickedLeft = isClicked;
-        _isClickedRight = !isClicked;
-    }
-
-    public void ClickedRight(bool isClicked)
-    {
-        _isClickedRight = isClicked;
-        _isClickedLeft = !isClicked;
-    }
-
     public bool IsClickedLeft()
-    { return _isClickedLeft; }
+    {
+        return _isClickedLeft;
+    }
 
     public bool IsClickedRight()
-    { return _isClickedRight; }
+    {
+        return _isClickedRight;
+    }
+    
+    public void ClickedLeft(bool state)
+    {
+        _isTouchLeft = state;
+    }
 
-
+    public void ClickedRight(bool state)
+    {
+        _isTouchRight = state;
+    }
 }
