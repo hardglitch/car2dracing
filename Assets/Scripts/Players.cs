@@ -1,9 +1,6 @@
 ﻿//This must be on "Players" in Unity
 
-using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Players : MonoBehaviour

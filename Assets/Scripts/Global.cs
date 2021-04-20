@@ -1,8 +1,6 @@
-using UnityEngine;
-
-public class Global : MonoBehaviour
+public static class Global
 {
-    private static int _level = 1,
+    private static int _level = 2,
                        _maxLevel = 4,
                        _hero = 1,
                        _car = 1,
@@ -16,7 +14,7 @@ public class Global : MonoBehaviour
         get => _lengthX;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _lengthX = value;
         }
@@ -27,7 +25,7 @@ public class Global : MonoBehaviour
         get => _level;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _level = value;
         }
@@ -38,7 +36,7 @@ public class Global : MonoBehaviour
         get => _maxLevel;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _maxLevel = value;
         }
@@ -49,7 +47,7 @@ public class Global : MonoBehaviour
         get => _hero;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _hero = value;
         }
@@ -60,7 +58,7 @@ public class Global : MonoBehaviour
         get => _car;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _car = value;
         }
@@ -71,7 +69,7 @@ public class Global : MonoBehaviour
         get => _maxCar;
         set
         {
-            value = Mathf.Abs(value);
+            value = UnityEngine.Mathf.Abs(value);
             if (value > 100) value = 100;
             _maxCar = value;
         }

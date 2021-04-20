@@ -448,7 +448,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0.003
 --- !u!1 &61553209
 GameObject:
@@ -1924,7 +1929,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0
 --- !u!1 &358820295
 GameObject:
@@ -3373,7 +3383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0.001
 --- !u!1 &632644318
 GameObject:
@@ -3545,7 +3560,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0.015
 --- !u!1 &684602456
 GameObject:
@@ -4570,7 +4590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0.03
 --- !u!1 &983206471
 GameObject:
@@ -8127,7 +8152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d387294ce61732b4087af96baa28405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 171816962}
+  heroScreen: {fileID: 2077266387}
+  carScreen: {fileID: 524800899}
+  levelScreen: {fileID: 423098484}
+  heroContent: {fileID: 8940304}
+  carContent: {fileID: 288099623}
+  levelContent: {fileID: 171816962}
   parallaxEffect: 0.01
 --- !u!1 &1942495369
 GameObject:
