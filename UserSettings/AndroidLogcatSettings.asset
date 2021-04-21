@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "H8HNW19C20005780",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "H8HNW19C20005780",
+        "name": "com.DefaultCompany.com.unity.template.mobile2D",
+        "processId": 10476,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,12 @@
             "deviceId": "H8HNW19C20005780",
             "name": "com.unity3d.mobileremote",
             "processId": 32726,
+            "exited": false
+        },
+        {
+            "deviceId": "H8HNW19C20005780",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 10476,
             "exited": false
         }
     ],

@@ -107,11 +107,11 @@ public class Hud : MonoBehaviour
 
     public void Finish()
     {
-        //Time.timeScale = 0f;
         Player.enabled = false;
         finishScreen.GetComponent<Animator>().SetTrigger(Finish1);
         var lvl = Global.Level;
         var lvlRating = GetLevelRating();
+        var finishTime = _levelTime;
         sfxManager.PlayFinishSfx();
 
         if (!PlayerPrefs.HasKey("Level") || PlayerPrefs.GetInt("Level") < lvl || lvl == Global.MaxLevel)
@@ -126,7 +126,7 @@ public class Hud : MonoBehaviour
             PlayerPrefs.SetInt("CoinsTotal", PlayerPrefs.GetInt("CoinsTotal") + Player.Coins);
 
         if (!PlayerPrefs.HasKey("Time" + lvl))
-            PlayerPrefs.SetFloat("Time" + lvl, _levelTime);
+            PlayerPrefs.SetFloat("Time" + lvl, finishTime);
 
         if (!PlayerPrefs.HasKey("Rating" + lvl))
             PlayerPrefs.SetInt("Rating" + lvl, lvlRating);
@@ -134,7 +134,7 @@ public class Hud : MonoBehaviour
         PlayerPrefs.Save();
 
         finishCoinsUI.text = Player.Coins.ToString("00");
-        finishTimeUI.text = ShowGameTime(_levelTime);
+        finishTimeUI.text = ShowGameTime(finishTime);
         MakeRatingStars(lvlRating);
     }
 
