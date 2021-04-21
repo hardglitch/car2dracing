@@ -20,10 +20,11 @@ public class Hud : MonoBehaviour
     [SerializeField] private TimeWork timeWork;
     [SerializeField] private float countdown = 60f;
     private float _levelTime;
-    [SerializeField] private float levelTimeAaa = 120f;
+    private readonly float _levelTimeAaa = 2f * Global.LevelSize;
 
     [SerializeField] private CoinBot coinBot;
     [SerializeField] private SfxManager sfxManager;
+    [SerializeField] private Scoreboard scoreboard;
     private static readonly int Finish1 = Animator.StringToHash("Finish");
 
 
@@ -141,12 +142,13 @@ public class Hud : MonoBehaviour
     private int GetLevelRating()
     {
         var coinRating = Player.Coins / (float)coinBot.GetCreatedCoins();
-        var timeRating = levelTimeAaa / _levelTime;
+        var timeRating = _levelTimeAaa / _levelTime;
+        var placeRating = 4f / (scoreboard.playerPlace * 10);
         var rating = 0;
 
-        if (coinRating + timeRating <= 0.7f) rating = 1;
-        if (coinRating + timeRating > 0.7f) rating = 2;
-        if (coinRating + timeRating >= 1.7f) rating = 3;
+        if (coinRating + timeRating + placeRating <= 1.6f) rating = 1;
+        if (coinRating + timeRating + placeRating > 1.6f) rating = 2;
+        if (coinRating + timeRating + placeRating >= 2.3f) rating = 3;
 
         return rating;
     }
@@ -156,12 +158,13 @@ public class Hud : MonoBehaviour
     {
         for (var i=rating-1; i>=0; i--)
         {
-            var transform1 = parentStar.transform;
-            var position = transform1.position;
-            Instantiate(
+            var position = parentStar.transform.position;
+            var newStar = Instantiate(
                 ratingStar,
                 new Vector3 (position.x - starDistance * (2*i - rating + 1), position.y, position.z),
-                transform1.rotation);
+                Quaternion.identity);
+            newStar.transform.SetParent(parentStar);
+            
         }
     }
 

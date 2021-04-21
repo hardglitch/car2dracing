@@ -35,9 +35,16 @@ public class Players : MonoBehaviour
             _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().CarObj = _carGO[i-1].GetComponent<Car>();
             _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().ScoreboardObj = scoreboardObj;
             _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().sfxManagerObj = sfxManagerObj;
+            foreach (var child in _carGO[i - 1].GetComponent<Car>().GetComponentsInChildren<Collisions>())
+            {
+                child.CarObj = _carGO[i-1].GetComponent<Car>();
+                child.ScoreboardObj = scoreboardObj;
+                child.sfxManagerObj = sfxManagerObj;
+            }
+            
 
             _carGO[i-1].GetComponent<Car>().gameObject.layer = LayerMask.NameToLayer("Competitor " + i);
-            foreach (var child in _carGO[i-1].GetComponent<Car>().GetComponentsInChildren<Transform>())
+            foreach (var child in _carGO[i - 1].GetComponent<Car>().GetComponentsInChildren<Transform>())
                 child.gameObject.layer = LayerMask.NameToLayer("Competitor " + i);
         }
 
@@ -48,6 +55,13 @@ public class Players : MonoBehaviour
         _carGO[Global.Car-1].GetComponent<AngleTimer>().CompetitorMode = false;
         _carGO[Global.Car-1].GetComponent<AngleTimer>().HudObj = hudObj;
         _carGO[Global.Car-1].GetComponent<Car>().ControllersObj = controllersObj;
+        foreach (var child in _carGO[Global.Car - 1].GetComponent<Car>().GetComponentsInChildren<Collisions>())
+        {
+            child.CarObj = _carGO[Global.Car-1].GetComponent<Car>();
+            child.HudObj = hudObj;
+            child.ScoreboardObj = scoreboardObj;
+            child.sfxManagerObj = sfxManagerObj;
+        }
 
         scoreboardObj.Cars = _carGO;
         hudObj.Player = _carGO[Global.Car-1].GetComponent<Car>();

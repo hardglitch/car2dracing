@@ -10,11 +10,11 @@ public class Collisions : MonoBehaviour
     internal Scoreboard ScoreboardObj { get; set; }
     internal SfxManager sfxManagerObj { get; set; }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("MaxX"))  // Finish
         {
-            //GetComponent<Competitor>().SetIsFinished(true);
             ScoreboardObj.PushPlaceholderValue(gameObject.name);
 
             //Finish Scene
@@ -38,12 +38,12 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             CarObj.Coins += 1;
             if (!CarObj.CompetitorMode) HudObj.ShowCoinsUI();
-            sfxManagerObj.PlayCoinSfx();
+            if (sfxManagerObj != null) sfxManagerObj.PlayCoinSfx();
         }
 
         if (!collision.gameObject.CompareTag($"HP")) return;
         Destroy(collision.gameObject);
-        CarObj.RecountHealth(+1);
+        if (CarObj != null) CarObj.RecountHealth(+1);
     }
     
     private void OnItemCollision(Collider2D collision)

@@ -7,7 +7,7 @@ public static class Global
                        _maxCar = 6;
     
     private static float _lengthX = 19.20f;              // 1920px
-    public static int LevelSize => 100;
+    public static int LevelSize => 50;
 
     public static float GroundPrefabSizeX
     {

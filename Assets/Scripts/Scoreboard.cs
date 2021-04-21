@@ -6,6 +6,7 @@ using UnityEngine;
 public class Scoreboard : MonoBehaviour
 {
     internal GameObject[] Cars { get; set; }
+    internal int playerPlace { get; set; }
     private readonly string[] _winPlaces = { "", "", "" };
 
 
@@ -18,6 +19,8 @@ public class Scoreboard : MonoBehaviour
             {
                 _winPlaces[i] = carName;
                 SetPlaceholderValue(i + 1, carNumber);
+                if (carNumber == Global.Car) playerPlace = i + 1;
+                else playerPlace = 4;
                 break;
             }
     }

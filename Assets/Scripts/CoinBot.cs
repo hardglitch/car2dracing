@@ -23,7 +23,7 @@ public class CoinBot : MonoBehaviour
     [SerializeField] private Transform dropSource;
     [SerializeField] private DropObject[] dropItems;
 
-    private const float _minDropX = 0;
+    private const float MINDropX = 0;
     private float _maxDropX;
     private bool _onCollision;
     private int _createdCoins;
@@ -42,7 +42,7 @@ public class CoinBot : MonoBehaviour
         transform.Translate(Vector3.right * (speed * Time.deltaTime));
 
         // dropping
-        if (!(transform.position.x >= _minDropX) || !(transform.position.x <= _maxDropX) || _onCollision) return;
+        if (!(transform.position.x >= MINDropX) || !(transform.position.x <= _maxDropX) || _onCollision) return;
         foreach (var t in dropItems)
         {
             t.SetCounter(t.GetCounter() + Time.deltaTime);

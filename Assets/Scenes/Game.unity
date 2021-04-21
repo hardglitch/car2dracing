@@ -2869,9 +2869,9 @@ MonoBehaviour:
   starDistance: 1
   timeWork: 1
   countdown: 60
-  levelTimeAaa: 120
   coinBot: {fileID: 1371156749}
   sfxManager: {fileID: 519420038}
+  scoreboard: {fileID: 429602233}
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
