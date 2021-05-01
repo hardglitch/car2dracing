@@ -1,0 +1,78 @@
+{
+    "name": "PlayerController",
+    "maps": [
+        {
+            "name": "PlayerControllers",
+            "id": "9c32d5db-77eb-425d-93fd-d3083b9e466e",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "b55c3c34-0d2e-4f53-8d57-7670eb9f9ca1",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "33240d51-2882-4cae-9e67-161de1bd99a3",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6e92c8b0-e667-4552-954e-80fd3fb6a3c8",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "CPU",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "d844b77b-3a35-49bd-ac60-c83f19e2a968",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "CPU",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "CPU",
+            "bindingGroup": "CPU",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Phone",
+            "bindingGroup": "Phone",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

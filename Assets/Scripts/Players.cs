@@ -19,7 +19,6 @@ public class Players : MonoBehaviour
     private void Awake()
     {
         PrepareCars();
-        //throw new NotImplementedException();
     }
 
     private void PrepareCars()
