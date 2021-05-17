@@ -363,11 +363,11 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .idea/
+_Source/
 Library/
 Logs/
 obj/
 Packages/
-ProjectSettings/
 Temp/
 UIElementsSchema/
 UserSettings/

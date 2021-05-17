@@ -1,13 +1,13 @@
 public static class Global
 {
-    private static int _level = 2,
-                       _maxLevel = 4,
+    private static int _level = 5,
+                       _maxLevel = 7,
                        _hero = 1,
                        _car = 1,
                        _maxCar = 6;
     
     private static float _lengthX = 19.20f;              // 1920px
-    public static int LevelSize => 500;
+    public static int LevelSize => 100;
 
     public static float GroundPrefabSizeX
     {

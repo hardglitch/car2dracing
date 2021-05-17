@@ -9,6 +9,10 @@ public class Car: MonoBehaviour
     [SerializeField] private float acceleration = 200;
     [SerializeField] private float maxSpeed = 1500;
     [SerializeField] private float inertia = 2;
+    
+    [Header("Audio")]
+    [SerializeField] private float maxPitch = 3;
+    private AudioSource _audioSource;
 
     internal GameObject CarPrefab => gameObject;
     internal GameObject CarIcon => CarPrefab.transform.Find("Icon").gameObject;
@@ -31,6 +35,8 @@ public class Car: MonoBehaviour
         _wheelJoints = CarPrefab.GetComponents<WheelJoint2D>();
         _wheels = _wheelJoints[0].motor;
         _angleTimer = GetComponent<AngleTimer>();
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.pitch = 0;
     }
 
     private void FixedUpdate()
@@ -90,6 +96,8 @@ public class Car: MonoBehaviour
                 _wheelJoints[1].motor = _wheels; // backWheel = frontWheel
                 _wheelJoints[0].motor = _wheels;
 
+                _audioSource.pitch = maxPitch * Mathf.Abs(_wheels.motorSpeed / maxSpeed);
+                
                 _angleTimer.AngleChecker();
             }
             catch (Exception error)

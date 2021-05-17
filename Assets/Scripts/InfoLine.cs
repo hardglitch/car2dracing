@@ -51,7 +51,7 @@ public class InfoLine : MonoBehaviour
     {
         for (var i=0; i<Global.MaxCar; i++)
         {
-            _posXInfoLine = MinXInfoLine + cars[i].PosXLevel * (MaxXInfoLine - MinXInfoLine) / ((_maxXLevel - _minXLevel));
+            _posXInfoLine = MinXInfoLine + cars[i].PosXLevel * (MaxXInfoLine - MinXInfoLine) / (_maxXLevel - _minXLevel);
             cars[i].PosXInfoLine = _posXInfoLine;
         }
     }

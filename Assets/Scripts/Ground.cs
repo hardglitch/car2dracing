@@ -20,7 +20,7 @@ public class Ground : MonoBehaviour
             _ground.transform.SetParent(transform);
 
             if (i % 10 != 0 || i <= 0) continue;
-            _spikesPos = new Vector3(_startPos.x, _startPos.y + 0.7f, transform.position.z);
+            _spikesPos = new Vector3(_startPos.x, _startPos.y + 0.6f, transform.position.z + 1);
             _spikes = Instantiate(spikesPrefab, _spikesPos, transform.rotation);
             _spikes.transform.SetParent(transform);
         }
