@@ -28,7 +28,7 @@ public class Settings : MonoBehaviour
 
     public void ChangeSoundFXVolume()
     {
-        soundfxSource.volume = musicSlider.value / 100;
+        soundfxSource.volume = soundfxSlider.value / 100;
     }
 
 

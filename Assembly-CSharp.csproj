@@ -44,28 +44,43 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\Scripts\Collisions.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\ConsentInfoUpdateCallbacks.cs" />
      <Compile Include="Assets\Scripts\MaxX.cs" />
      <Compile Include="Assets\Scripts\DropItemCollectable.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Dummy\DummyClient.cs" />
      <Compile Include="Assets\Scripts\MenuLevels.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+     <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentFormListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\AndroidConsentManagerClient.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\ConsentFormCallbacks.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealInterstitialCallbacks.cs" />
+     <Compile Include="Assets\Appodeal\Demo\Scripts\AppodealDemo.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\Scripts\InfoLine.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\ConsentManagerClientFactory.cs" />
      <Compile Include="Assets\Scripts\DropItemStatic.cs" />
+     <Compile Include="Assets\Appodeal\Api\Appodeal\Appodeal.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IInterstitialAdListener.cs" />
      <Compile Include="Assets\Scripts\MakeLevel.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IRewardedVideoAdListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealPermissionCallbacks.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IMrecAdListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
      <Compile Include="Assets\Scripts\LevelMngr.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+     <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentInfoUpdateListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
      <Compile Include="Assets\Scripts\Controllers.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\INonSkippableVideoAdListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
      <Compile Include="Assets\Scripts\Scoreboard.cs" />
@@ -77,28 +92,46 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\Scripts\CoinBot.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealMrecCallbacks.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AndroidAppodealClient.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealRewardedVideoCallbacks.cs" />
      <Compile Include="Assets\InputSystem\PlayerController.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IAppodealAdsClient.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealBannerCallbacks.cs" />
      <Compile Include="Assets\Scripts\Hud.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IBannerAdListener.cs" />
      <Compile Include="Assets\Scripts\SfxManager.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\iOS\ConsentManagerObjCBridge.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\Scripts\Car.cs" />
      <Compile Include="Assets\Scripts\Ground.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\iOS\AppodealObjCBridge.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+     <Compile Include="Assets\Appodeal\Common\Appodeal\IPermissionGrantedListener.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealNonSkippableVideoCallbacks.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\iOS\iOSConsentManagerClient.cs" />
+     <Compile Include="Assets\Appodeal\Api\ConsentManager\ConsentManager.cs" />
      <Compile Include="Assets\Scripts\Players.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Dummy\Dummy.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\Scripts\MenuParallax.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+     <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\iOS\AppodealAdsClient.cs" />
+     <Compile Include="Assets\Appodeal\Platforms\Appodeal\AppodealAdsClientFactory.cs" />
      <Compile Include="Assets\Scripts\AngleTimer.cs" />
+     <Compile Include="Assets\Scripts\NextLevel.cs" />
+     <Compile Include="Assets\Scripts\ADSettings.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -346,14 +379,14 @@
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>F:/PROGRAM FILES/Unity/2021.1.7f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
-     <Reference Include="DemiLib">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
-     </Reference>
      <Reference Include="DOTween">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenPro">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+     </Reference>
+     <Reference Include="DemiLib">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>F:/PROGRAM FILES/Unity/2021.1.7f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -703,6 +736,9 @@
      <Reference Include="System.Xml.XPath.XDocument">
      <HintPath>F:/PROGRAM FILES/Unity/2021.1.7f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Tilemap.Extras">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.001">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
      </Reference>
@@ -718,11 +754,29 @@
      <Reference Include="Unity.Notifications">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="PsdPlugin">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Tilemap.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualStudio.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Searcher.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
@@ -730,8 +784,14 @@
      <Reference Include="Unity.2D.IK.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Psdimporter.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.2D.Path.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -748,8 +808,20 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Notifications.iOS">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.InternalAPIEditorBridge.001">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Mathematics">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.IK.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
@@ -757,62 +829,11 @@
      <Reference Include="Unity.ShaderGraph.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Mathematics.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Notifications.Android">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Common.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Extras">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Animation.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Psdimporter.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.InternalAPIEditorBridge.001">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Mathematics">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.Universal.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Animation.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
@@ -823,17 +844,29 @@
      <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Mathematics.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.2D.Common.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.SpriteShape.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Notifications.Android">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Common.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.RenderPipelines.Core.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -846,6 +879,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{6c92d54b-1ec5-7624-dca2-58a180cd69d9}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.csproj">
+      <Project>{12981c53-84e1-8b0b-5e23-01a7bfe35a77}</Project>
+      <Name>GoogleMobileAds</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
+      <Project>{3302e5e5-11d7-b42e-1917-a913915f0db4}</Project>
+      <Name>GoogleMobileAds.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

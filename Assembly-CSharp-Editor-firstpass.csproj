@@ -284,8 +284,38 @@
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>F:/PROGRAM FILES/Unity/2021.1.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
+     <Reference Include="Google.VersionHandlerImpl_v1.2.164">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.164.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.PackageManagerResolver_v1.2.165">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.google.external-dependency-manager@1.2.165/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.165.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.VersionHandler">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.google.external-dependency-manager@1.2.165/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
+     </Reference>
+     <Reference Include="DOTween">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.JarResolver_v1.2.164">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.164.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.IOSResolver_v1.2.164">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.164.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.JarResolver_v1.2.165">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.google.external-dependency-manager@1.2.165/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.165.dll</HintPath>
+     </Reference>
+     <Reference Include="DemiEditor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
+     </Reference>
+     <Reference Include="DOTweenPro">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+     </Reference>
      <Reference Include="DemiLib">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+     </Reference>
+     <Reference Include="Google.PackageManagerResolver_v1.2.164">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.164.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenProEditor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
@@ -293,14 +323,11 @@
      <Reference Include="DOTweenEditor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
      </Reference>
-     <Reference Include="DemiEditor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DemiLib/Core/Editor/DemiEditor.dll</HintPath>
+     <Reference Include="Google.IOSResolver_v1.2.165">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.google.external-dependency-manager@1.2.165/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.165.dll</HintPath>
      </Reference>
-     <Reference Include="DOTween">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTweenPro">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+     <Reference Include="Google.VersionHandlerImpl_v1.2.165">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.google.external-dependency-manager@1.2.165/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.165.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
@@ -653,11 +680,14 @@
      <Reference Include="System.Xml.XPath.XDocument">
      <HintPath>F:/PROGRAM FILES/Unity/2021.1.7f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
+     <Reference Include="UnityEngine.TestRunner">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+     </Reference>
      <Reference Include="UnityEditor.TestRunner">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEngine.TestRunner">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+     <Reference Include="Unity.2D.Tilemap.Extras">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.001">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
@@ -674,11 +704,29 @@
      <Reference Include="Unity.Notifications">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="PsdPlugin">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Tilemap.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualStudio.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Searcher.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
@@ -686,8 +734,14 @@
      <Reference Include="Unity.2D.IK.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Psdimporter.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.2D.Path.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -704,8 +758,20 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Notifications.iOS">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.InternalAPIEditorBridge.001">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Mathematics">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.IK.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
@@ -713,62 +779,11 @@
      <Reference Include="Unity.ShaderGraph.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Mathematics.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Notifications.Android">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Common.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Extras">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Animation.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Psdimporter.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.InternalAPIEditorBridge.001">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Mathematics">
-     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.Universal.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Animation.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
@@ -779,17 +794,29 @@
      <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Mathematics.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.2D.Common.Runtime">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.SpriteShape.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Notifications.Android">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Common.Editor">
+     <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.RenderPipelines.Core.Editor">
      <HintPath>F:/_DOX/My Game Projects/Car Racing 2D/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -802,6 +829,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{6c92d54b-1ec5-7624-dca2-58a180cd69d9}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.csproj">
+      <Project>{12981c53-84e1-8b0b-5e23-01a7bfe35a77}</Project>
+      <Name>GoogleMobileAds</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
+      <Project>{3302e5e5-11d7-b42e-1917-a913915f0db4}</Project>
+      <Name>GoogleMobileAds.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

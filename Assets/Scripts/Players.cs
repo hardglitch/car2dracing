@@ -33,12 +33,12 @@ public class Players : MonoBehaviour
             _carGO[i-1].GetComponent<AngleTimer>().CompetitorMode = true;
             _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().CarObj = _carGO[i-1].GetComponent<Car>();
             _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().ScoreboardObj = scoreboardObj;
-            _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().sfxManagerObj = sfxManagerObj;
+            _carGO[i-1].GetComponent<Car>().GetComponent<Collisions>().SfxManagerObj = sfxManagerObj;
             foreach (var child in _carGO[i - 1].GetComponent<Car>().GetComponentsInChildren<Collisions>())
             {
                 child.CarObj = _carGO[i-1].GetComponent<Car>();
                 child.ScoreboardObj = scoreboardObj;
-                child.sfxManagerObj = sfxManagerObj;
+                child.SfxManagerObj = sfxManagerObj;
             }
             
 
@@ -50,16 +50,19 @@ public class Players : MonoBehaviour
         _playerCar = _carGO[Global.Car-1].GetComponent<Car>().CarPrefab;
         _carGO[Global.Car-1].GetComponent<Car>().HudObj = hudObj;
         _carGO[Global.Car-1].GetComponent<Car>().CompetitorMode = false;
+        _carGO[Global.Car-1].GetComponent<Car>().SfxManagerObj = sfxManagerObj;
         _carGO[Global.Car-1].GetComponent<Car>().GetComponent<Collisions>().HudObj = hudObj;
         _carGO[Global.Car-1].GetComponent<AngleTimer>().CompetitorMode = false;
         _carGO[Global.Car-1].GetComponent<AngleTimer>().HudObj = hudObj;
         _carGO[Global.Car-1].GetComponent<Car>().ControllersObj = controllersObj;
+        ADSettings.CarObj = _carGO[Global.Car-1].GetComponent<Car>();
+        ADSettings.HudObj = hudObj;
         foreach (var child in _carGO[Global.Car - 1].GetComponent<Car>().GetComponentsInChildren<Collisions>())
         {
             child.CarObj = _carGO[Global.Car-1].GetComponent<Car>();
             child.HudObj = hudObj;
             child.ScoreboardObj = scoreboardObj;
-            child.sfxManagerObj = sfxManagerObj;
+            child.SfxManagerObj = sfxManagerObj;
         }
 
         scoreboardObj.Cars = _carGO;

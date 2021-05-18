@@ -107,7 +107,7 @@ public class Hud : MonoBehaviour
 
     public void Finish()
     {
-        Player.enabled = false;
+        // Player.enabled = false;
         finishScreen.GetComponent<Animator>().SetTrigger(Finish1);
         var lvl = Global.Level;
         var lvlRating = GetLevelRating();
@@ -177,6 +177,12 @@ public class Hud : MonoBehaviour
         sfxManager.PlayRestartSfx();
     }
 
+    public void GameContinue()
+    {
+        Time.timeScale = 1f;
+        Player.enabled = true;
+        restartScreen.SetActive(false);
+    }
 
     public void TurnOverCounter(bool state)
     {

@@ -12,6 +12,7 @@ public class Car: MonoBehaviour
     
     [Header("Audio")]
     [SerializeField] private float maxPitch = 3;
+    public SfxManager SfxManagerObj { get; set; }
     private AudioSource _audioSource;
 
     internal GameObject CarPrefab => gameObject;
@@ -20,7 +21,7 @@ public class Car: MonoBehaviour
     private const int MAXHealth = 3;
     internal int Health { get; private set; } = MAXHealth;
     internal int Coins { get; set; }
-    internal bool IsFinished { get; private set; } = false;
+    internal bool IsFinished { get; set; }
     
     private WheelJoint2D[] _wheelJoints = new WheelJoint2D[2];
     private JointMotor2D _wheels;
@@ -28,7 +29,8 @@ public class Car: MonoBehaviour
     
     internal Controllers ControllersObj { get; set; }
     internal Hud HudObj { get; set; }
-    internal bool CompetitorMode { get; set; } = false;
+    internal bool CompetitorMode { get; set; }
+    private AudioSource _sfxSource;
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class Car: MonoBehaviour
         _angleTimer = GetComponent<AngleTimer>();
         _audioSource = GetComponent<AudioSource>();
         _audioSource.pitch = 0;
+        _sfxSource = SfxManagerObj.transform.Find("SoundFX").GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -71,7 +74,7 @@ public class Car: MonoBehaviour
             try
             {
                 // Forward Move (Right)
-                if (ControllersObj.IsClickedRight() && _wheels.motorSpeed >= -maxSpeed)
+                if (ControllersObj.IsClickedRight() && _wheels.motorSpeed >= -maxSpeed && !IsFinished)
                 {
                     if (_wheels.motorSpeed > 0)
                         _wheels.motorSpeed = 0;
@@ -83,7 +86,7 @@ public class Car: MonoBehaviour
 
 
                 // Back Move (Left)
-                if (ControllersObj.IsClickedLeft() && _wheels.motorSpeed <= maxSpeed)
+                if (ControllersObj.IsClickedLeft() && _wheels.motorSpeed <= maxSpeed && !IsFinished)
                 {
                     if (_wheels.motorSpeed < 0)
                         _wheels.motorSpeed = 0;
@@ -97,6 +100,7 @@ public class Car: MonoBehaviour
                 _wheelJoints[0].motor = _wheels;
 
                 _audioSource.pitch = maxPitch * Mathf.Abs(_wheels.motorSpeed / maxSpeed);
+                _audioSource.volume = _sfxSource.volume;
                 
                 _angleTimer.AngleChecker();
             }

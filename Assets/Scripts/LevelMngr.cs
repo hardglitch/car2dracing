@@ -13,17 +13,12 @@ public class LevelMngr : MonoBehaviour
 
     public void NextLevel()
     {
-        var lvl = Global.Level;
-        if (Global.Level < Global.MaxLevel)
-            Global.Level = ++lvl;
-        Time.timeScale = 1;
-        OpenScene(lvl);
+        if (Global.Level < Global.MaxLevel) OpenScene(++Global.Level);
     }
 
 
     public void ReloadLevel()
     {
-        Time.timeScale = 1;
         OpenScene(Global.Level);
     }
 

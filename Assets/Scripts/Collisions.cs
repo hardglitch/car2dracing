@@ -1,6 +1,5 @@
 ﻿//This must be on "CarPrefab" (on Car and on every Wheel) in Unity
 
-using System;
 using UnityEngine;
 
 public class Collisions : MonoBehaviour
@@ -8,7 +7,7 @@ public class Collisions : MonoBehaviour
     internal Car CarObj { get; set; }
     internal Hud HudObj { get; set; }
     internal Scoreboard ScoreboardObj { get; set; }
-    internal SfxManager sfxManagerObj { get; set; }
+    internal SfxManager SfxManagerObj { get; set; }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -18,7 +17,11 @@ public class Collisions : MonoBehaviour
             ScoreboardObj.PushPlaceholderValue(gameObject.name);
 
             //Finish Scene
-            if (gameObject.layer == LayerMask.NameToLayer("Player")) HudObj.Finish();
+            if (gameObject.layer == LayerMask.NameToLayer("Player") && !CarObj.IsFinished)
+            {
+                CarObj.IsFinished = true;
+                HudObj.Finish();
+            }
         }
 
         OnItemCollision(collision);
@@ -38,7 +41,7 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             CarObj.Coins += 1;
             if (!CarObj.CompetitorMode) HudObj.ShowCoinsUI();
-            if (sfxManagerObj != null) sfxManagerObj.PlayCoinSfx();
+            if (SfxManagerObj != null) SfxManagerObj.PlayCoinSfx();
         }
 
         if (!collision.gameObject.CompareTag($"HP")) return;
@@ -53,7 +56,7 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             CarObj.Coins += 1;
             if (!CarObj.CompetitorMode) HudObj.ShowCoinsUI();
-            sfxManagerObj.PlayCoinSfx();
+            SfxManagerObj.PlayCoinSfx();
         }
 
         if (!collision.gameObject.CompareTag($"HP")) return;

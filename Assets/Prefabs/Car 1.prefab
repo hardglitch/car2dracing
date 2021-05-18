@@ -614,6 +614,7 @@ MonoBehaviour:
   acceleration: 200
   maxSpeed: 1500
   inertia: 2
+  maxPitch: 3
 --- !u!114 &8944677841437954215
 MonoBehaviour:
   m_ObjectHideFlags: 0
